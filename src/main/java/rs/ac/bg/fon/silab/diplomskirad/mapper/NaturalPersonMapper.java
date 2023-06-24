@@ -1,8 +1,9 @@
 package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.NaturalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.dto.NaturalPersonDTO;
-
+@Component
 public non-sealed class NaturalPersonMapper implements DtoDomainMapper<NaturalPersonDTO, NaturalPerson> {
     @Override
     public NaturalPersonDTO entityToDTO(NaturalPerson naturalPerson) {

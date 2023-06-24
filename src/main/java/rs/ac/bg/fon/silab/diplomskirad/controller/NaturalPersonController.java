@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,8 @@ public class NaturalPersonController {
     private final NaturalPersonService service;
 
     @GetMapping("/all")
-    public List<NaturalPersonDTO> getAllNaturalPersons(){
-        return service.getAllNaturalPersons();
+    public ResponseEntity<List<NaturalPersonDTO>> getAllNaturalPersons(){
+        var foundNaturalPerons = service.getAllNaturalPersons();
+        return ResponseEntity.ok(foundNaturalPerons);
     }
 }

@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,8 @@ public class PartnerController {
     private final PartnerService service;
 
     @GetMapping("/all")
-    public List<PartnerDTO> getAllPartners(){
-        return service.getAllPartners();
+    public ResponseEntity<List<PartnerDTO>> getAllPartners(){
+        var foundPartnersList = service.getAllPartners();
+        return ResponseEntity.ok(foundPartnersList);
     }
 }

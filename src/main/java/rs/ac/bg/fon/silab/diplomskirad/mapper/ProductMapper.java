@@ -1,9 +1,10 @@
 package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
-
+@Component
 public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Product> {
 
     @Override

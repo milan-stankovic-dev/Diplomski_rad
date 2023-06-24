@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
-import rs.ac.bg.fon.silab.diplomskirad.exception.InvalidIdException;
+import rs.ac.bg.fon.silab.diplomskirad.exception.ExistingEntityException;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
 
@@ -16,53 +16,58 @@ import java.util.Optional;
 @Service
 public class ProductService {
     private final ProductRepository repository;
+    private final ProductMapper productMapper;
 
     public List<ProductDTO> getAllProductDTOs() {
         var products = repository.findAll();
-        return new ProductMapper().listOfEntitiesToListOfDTOs(products);
+        return productMapper.listOfEntitiesToListOfDTOs(products);
     }
 
-    public ProductDTO insertProduct(ProductDTO productDTO) {
-        try {
-            var product = new ProductMapper().dTOtoEntity(productDTO);
-            var savedProduct = repository.save(product);
-            return new ProductMapper().entityToDTO(savedProduct);
-        }catch (Exception ex){
-            System.out.println(ex.getMessage());
-            throw ex;
-        }
-
+    public ProductDTO insertProduct(ProductDTO productDTO) throws ExistingEntityException{
+            List<Product> discoveredProduct = repository
+                    .findByProductName(productDTO.productName());
+            if(!discoveredProduct.isEmpty()){
+                throw new ExistingEntityException("Entity already exists");
+            }
+            var product = productMapper.dTOtoEntity(productDTO);
+            return productMapper.entityToDTO(repository.save(product));
     }
 
-    private Product findProductByID(long id){
+    private Optional<Product> findProductByID(long id){
         Optional<Product> foundProduct = repository.findById(id);
         if(foundProduct.isEmpty()){
-            throw new EntityNotFoundException("No product found with said id.");
+            return Optional.empty();
         }
-        return foundProduct.get();
+        var product = foundProduct.get();
+        return Optional.of(product);
     }
-    public List<ProductDTO> getAllProductDTOsWithNameOrSimilar(String name) {
+
+    public Optional<List<ProductDTO>> getAllProductDTOsWithNameOrSimilar(String name) {
         List<Product> foundProducts = repository.findAllByNameOrSimilar(name);
-        return new ProductMapper().listOfEntitiesToListOfDTOs(foundProducts);
+        if(foundProducts.isEmpty()){
+            return Optional.empty();
+        }
+
+        return Optional.of(productMapper.listOfEntitiesToListOfDTOs(foundProducts));
     }
 
-    public ProductDTO updateProduct(ProductDTO productDTO, long id) {
-        if(productDTO == null){
-            throw new NullPointerException("Please provide a product for update.");
+    public Optional<ProductDTO> updateProduct(ProductDTO productDTO, long id) {
+        Optional<Product> foundProductOptional = findProductByID(id);
+        if(foundProductOptional.isEmpty()){
+            throw new EntityNotFoundException("There is no such product");
         }
-
-        if(id < 0){
-            throw new InvalidIdException("Provided id not valid.");
-        }
-
-        Product foundProduct = findProductByID(id);
-        Product updatedProduct = new ProductMapper().dTOtoEntity(productDTO);
+        Product updatedProduct = productMapper.dTOtoEntity(productDTO);
         updatedProduct.setId(id);
 
-        return new ProductMapper().entityToDTO(repository.save(updatedProduct));
+        return Optional.of(productMapper.entityToDTO(repository.save(updatedProduct)));
     }
 
     public void deleteProductById(long id) {
+        Optional<Product> productOptional
+                = repository.findById(id);
+        if(productOptional.isEmpty()){
+            throw new EntityNotFoundException("There is no such product");
+        }
         repository.deleteById(id);
     }
 }

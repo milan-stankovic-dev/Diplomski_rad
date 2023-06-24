@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.service;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Firm;
 import rs.ac.bg.fon.silab.diplomskirad.dto.FirmDTO;
@@ -13,9 +14,11 @@ import java.util.List;
 @Service
 public class FirmService {
     private final FirmRepository repository;
+    private final FirmMapper firmMapper;
 
     public List<FirmDTO> getAllFirms() {
         List<Firm> foundFirms = repository.findAll();
-        return new FirmMapper().listOfEntitiesToListOfDTOs(foundFirms);
+        return firmMapper
+                .listOfEntitiesToListOfDTOs(foundFirms);
     }
 }
