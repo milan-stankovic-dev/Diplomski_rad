@@ -8,7 +8,7 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
 
     @Override
     public ProductDTO entityToDTO(Product product) {
-        return new ProductDTO(
+        var productDto = new ProductDTO(
                 product.getId(),
                 product.getProductName(),
                 product.getWeight(),
@@ -17,6 +17,8 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 product.getType(),
                 product.getPrice()
         );
+
+        return productDto;
     }
 
     @Override

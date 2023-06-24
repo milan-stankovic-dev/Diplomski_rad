@@ -20,14 +20,14 @@ public class ProductController {
         return service.getAllProductDTOs();
     }
 
-    @PostMapping
-    public ProductDTO insertProduct(@RequestBody ProductDTO productDTO) {
-        return service.insertProduct(productDTO);
-    }
-
     @GetMapping("/all/named/{name}")
     public List<ProductDTO> getAllProductsWithName(@PathVariable String name){
         return service.getAllProductDTOsWithNameOrSimilar(name);
+    }
+
+    @PostMapping
+    public ProductDTO insertProduct(@RequestBody ProductDTO productDTO) {
+        return service.insertProduct(productDTO);
     }
 
     @PutMapping("/update/{id}")
@@ -40,4 +40,5 @@ public class ProductController {
     public void deleteProduct(@PathVariable long id){
         service.deleteProductById(id);
     }
+
 }

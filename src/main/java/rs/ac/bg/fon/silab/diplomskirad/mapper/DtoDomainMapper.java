@@ -6,7 +6,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public sealed interface DtoDomainMapper<DTO, ENTITY> permits ProductMapper {
+public sealed interface DtoDomainMapper<DTO, ENTITY> permits
+                                                    ProductMapper,
+                                                    FirmMapper,
+                                                    PartnerMapper,
+                                                    LegalPersonMapper,
+                                                    NaturalPersonMapper{
     DTO entityToDTO(ENTITY entity);
     ENTITY dTOtoEntity(DTO dto);
 
