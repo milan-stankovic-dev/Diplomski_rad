@@ -12,7 +12,9 @@ public sealed interface DtoDomainMapper<DTO, ENTITY> permits
                                                     PartnerMapper,
                                                     LegalPersonMapper,
                                                     NaturalPersonMapper,
-                                                    BillOfLadingMapper{
+                                                    BillOfLadingMapper,
+                                                    RegisterRequestUserMapper,
+                                                    AuthRequestUserMapper{
     DTO entityToDTO(ENTITY entity);
     ENTITY dTOtoEntity(DTO dto);
 

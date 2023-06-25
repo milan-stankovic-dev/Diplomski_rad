@@ -35,7 +35,7 @@
 		<artifactId>lombok</artifactId>
 		<scope>provided</scope>
 	</dependency>
-	<!-- ### JWT DEPENDECIES ##### -->
+	<!-- ### JWT DEPENDENCIES ##### -->
 	<dependency>
 		<groupId>io.jsonwebtoken</groupId>
 		<artifactId>jjwt-api</artifactId>
@@ -66,6 +66,7 @@
 		<artifactId>hibernate-core</artifactId>
 		<version>6.2.2.Final</version>
 	</dependency>
+
 	<dependency>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-security</artifactId>
@@ -73,7 +74,6 @@
 	<dependency>
 		<groupId>org.springframework.security</groupId>
 		<artifactId>spring-security-core</artifactId>
-		<version>6.0.3</version>
 	</dependency>
 	<dependency>
 		<groupId>io.jsonwebtoken</groupId>
