@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +14,7 @@ public class BillOfLadingItem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bill_id")
-    private BillOfLading bill;
+
     protected int amountSold;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")

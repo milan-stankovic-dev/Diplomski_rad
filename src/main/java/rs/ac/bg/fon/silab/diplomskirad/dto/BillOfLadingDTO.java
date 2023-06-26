@@ -13,6 +13,6 @@ public record BillOfLadingDTO(
         Date issueDate,
         BigDecimal totalCost,
         Buyer buyer,
-        Set<BillOfLadingItem> items
+        Set<BillOfLadingItemDTO> items
 )
 { }

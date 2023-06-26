@@ -22,12 +22,14 @@ public class BillOfLading {
     protected Date deadLine;
     protected Date issueDate;
     protected BigDecimal totalCost;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "buyer_id")
     private Buyer buyer;
+
     @OneToMany(fetch = FetchType.EAGER,
-        mappedBy = "bill")
-    @JsonIgnore
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private Set<BillOfLadingItem> items;
 
 }

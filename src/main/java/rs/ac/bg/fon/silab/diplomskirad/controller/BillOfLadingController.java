@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.diplomskirad.domain.BillOfLading;
+import rs.ac.bg.fon.silab.diplomskirad.dto.BillOfLadingDTO;
 import rs.ac.bg.fon.silab.diplomskirad.service.BillOfLadingService;
 
 @RequiredArgsConstructor
@@ -16,8 +17,8 @@ public class BillOfLadingController {
     private final BillOfLadingService service;
 
     @PostMapping
-    public ResponseEntity<BillOfLading> insertBillOfLading(
-            @RequestBody BillOfLading billOfLading){
-        return ResponseEntity.ok(service.insertBillOfLading(billOfLading));
+    public ResponseEntity<BillOfLadingDTO> insertBillOfLading(
+            @RequestBody BillOfLadingDTO billOfLadingDTO){
+        return ResponseEntity.ok(service.insertBillOfLading(billOfLadingDTO));
     }
 }

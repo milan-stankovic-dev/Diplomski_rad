@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,9 +18,6 @@ public class ReportItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "report_id")
-    private Report report;
     private double productCapacity;
 
     @ManyToOne(fetch = FetchType.EAGER)

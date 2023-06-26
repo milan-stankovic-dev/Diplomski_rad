@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +15,6 @@ public class GoodsReceivedNoteItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "goods_received_note_id")
-    private GoodsReceivedNote note;
     protected int amountOrdered;
 
     @ManyToOne(fetch = FetchType.EAGER)

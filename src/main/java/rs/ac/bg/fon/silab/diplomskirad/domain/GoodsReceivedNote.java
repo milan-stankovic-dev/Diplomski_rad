@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -25,9 +26,10 @@ public class GoodsReceivedNote {
     @JoinColumn(name = "partner_id")
     private Partner partner;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "note")
-    @JsonIgnore
-    private List<GoodsReceivedNoteItem> items;
+    @OneToMany(fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<GoodsReceivedNoteItem> items;
 
 
 }
