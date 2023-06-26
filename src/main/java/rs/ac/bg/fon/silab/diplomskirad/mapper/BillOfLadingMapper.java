@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public non-sealed class BillOfLadingMapper implements DtoDomainMapper<BillOfLadingDTO, BillOfLading> {
     private final BillOfLadingItemMapper itemMapper;
-
+    private final BuyerMapper buyerMapper;
     @Override
     public BillOfLadingDTO entityToDTO(BillOfLading bill) {
         var billDTO = new BillOfLadingDTO(
@@ -21,7 +21,7 @@ public non-sealed class BillOfLadingMapper implements DtoDomainMapper<BillOfLadi
                 bill.getDeadLine(),
                 bill.getIssueDate(),
                 bill.getTotalCost(),
-                bill.getBuyer(),
+                buyerMapper.entityToDTO(bill.getBuyer()),
                 itemMapper.setOfEntitiesSetOfDTOs(bill.getItems())
         );
 
@@ -35,7 +35,7 @@ public non-sealed class BillOfLadingMapper implements DtoDomainMapper<BillOfLadi
                 billDTO.deadLine(),
                 billDTO.issueDate(),
                 billDTO.totalCost(),
-                billDTO.buyer(),
+                buyerMapper.dTOtoEntity(billDTO.buyer()),
                 itemMapper.setOfDTOsToSetOfEntities(billDTO.items())
         );
 

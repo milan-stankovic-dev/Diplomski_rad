@@ -15,10 +15,10 @@ public class GoodsReceivedNoteItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    protected int amountOrdered;
+    private int amountOrdered;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    protected Product product;
+    private Product product;
 
 }

@@ -20,9 +20,11 @@ public non-sealed class LegalPersonMapper implements DtoDomainMapper<LegalPerson
     public LegalPerson dTOtoEntity(LegalPersonDTO legalPersonDTO) {
         var legalPerson = new LegalPerson();
 
-        legalPerson.setId(legalPersonDTO.id());
-        legalPerson.setFirmName(legalPersonDTO.firmName());
+        legalPerson.setId(legalPersonDTO.getId());
+        legalPerson.setFirmName(legalPersonDTO.getFirmName());
 
         return legalPerson;
     }
+
+
 }

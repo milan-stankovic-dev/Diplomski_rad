@@ -12,7 +12,7 @@ public record BillOfLadingDTO(
         Date deadLine,
         Date issueDate,
         BigDecimal totalCost,
-        Buyer buyer,
+        BuyerDTO buyer,
         Set<BillOfLadingItemDTO> items
 )
 { }

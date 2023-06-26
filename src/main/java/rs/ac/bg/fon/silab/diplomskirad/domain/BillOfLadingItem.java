@@ -15,8 +15,9 @@ public class BillOfLadingItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    protected int amountSold;
+    private int amountSold;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    protected Product product;
+    private Product product;
 }

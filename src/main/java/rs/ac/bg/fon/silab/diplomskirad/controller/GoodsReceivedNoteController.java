@@ -1,6 +1,8 @@
 package rs.ac.bg.fon.silab.diplomskirad.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +19,12 @@ public class GoodsReceivedNoteController {
     private final GoodsReceivedNoteService service;
 
     @PostMapping
-    public ResponseEntity<GoodsReceivedNoteDTO> insertNote(
+    public ResponseEntity<Object> insertNote(
             @RequestBody GoodsReceivedNoteDTO noteDTO){
-        return ResponseEntity.ok(service.insert(noteDTO));
+        try{
+            return ResponseEntity.ok(service.insert(noteDTO));
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+        }
     }
 }

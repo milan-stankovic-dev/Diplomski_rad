@@ -1,18 +1,19 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain.abstraction;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.BuyerMapper;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Buyer {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;

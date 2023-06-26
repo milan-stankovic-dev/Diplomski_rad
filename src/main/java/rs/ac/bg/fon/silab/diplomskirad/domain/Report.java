@@ -23,6 +23,7 @@ public class Report {
     private double totalCapacity;
 
     @OneToMany(fetch = FetchType.EAGER,
-    cascade = CascadeType.ALL, orphanRemoval = true)
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private Set<ReportItem> reportItems;
 }

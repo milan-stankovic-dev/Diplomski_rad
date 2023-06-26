@@ -20,7 +20,8 @@ public sealed interface DtoDomainMapper<DTO, ENTITY> permits
                                                     GoodsReceivedNoteMapper,
                                                     GoodsReceivedNoteItemMapper,
                                                     ReportItemMapper,
-                                                    ReportMapper{
+                                                    ReportMapper,
+                                                    BuyerMapper{
     DTO entityToDTO(ENTITY entity);
     ENTITY dTOtoEntity(DTO dto);
 

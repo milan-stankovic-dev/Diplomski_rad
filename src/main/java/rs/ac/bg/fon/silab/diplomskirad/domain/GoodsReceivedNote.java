@@ -22,6 +22,7 @@ public class GoodsReceivedNote {
     protected Date deadLine;
     protected Date issueDate;
     protected BigDecimal totalCost;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "partner_id")
     private Partner partner;

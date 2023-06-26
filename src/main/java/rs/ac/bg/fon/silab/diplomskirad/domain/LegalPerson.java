@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
+import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
 
 import java.util.Date;
 
@@ -21,5 +24,12 @@ public class LegalPerson extends Buyer{
     private long id;
     private String firmName;
     private Date foundingDate;
+
+    public LegalPerson(long id, String buyerAddress,
+                       String firmName, Date foundingDate) {
+        super(id, buyerAddress);
+        this.firmName = firmName;
+        this.foundingDate = foundingDate;
+    }
 
 }

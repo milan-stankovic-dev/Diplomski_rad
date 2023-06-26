@@ -1,6 +1,8 @@
 package rs.ac.bg.fon.silab.diplomskirad.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Report;
@@ -16,9 +18,13 @@ public class ReportController {
     private final ReportService service;
 
     @PostMapping
-    public ResponseEntity<ReportDTO> insertReport (
+    public ResponseEntity<Object> insertReport (
             @RequestBody ReportDTO reportDTO) throws Exception {
-        return ResponseEntity.ok(service.saveReport(reportDTO));
+        try {
+            return ResponseEntity.ok(service.saveReport(reportDTO));
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+        }
     }
 
     @GetMapping("/all")

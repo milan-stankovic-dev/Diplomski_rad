@@ -19,9 +19,11 @@ public non-sealed class NaturalPersonMapper implements DtoDomainMapper<NaturalPe
     @Override
     public NaturalPerson dTOtoEntity(NaturalPersonDTO naturalPersonDTO) {
         var naturalPerson = new NaturalPerson(
-                naturalPersonDTO.id(),
-                naturalPersonDTO.name(),
-                naturalPersonDTO.lastName()
+                naturalPersonDTO.getId(),
+                null,
+                naturalPersonDTO.getName(),
+                naturalPersonDTO.getLastName()
+
         );
 
         return naturalPerson;
