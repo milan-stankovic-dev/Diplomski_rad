@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,9 +21,17 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty(message = "Username cannot be blank.")
     private String username;
+
+    @NotEmpty(message = "Password cannot be blank.")
     private String password;
+
+    @NotEmpty(message = "Name cannot be blank.")
     private String name;
+
+    @NotEmpty(message = "Last name cannot be blank.")
     private String lastname;
 
     @Enumerated(EnumType.STRING)
