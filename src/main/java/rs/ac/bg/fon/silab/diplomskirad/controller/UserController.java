@@ -33,8 +33,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> registerUser(
+    public ResponseEntity<Object> registerUser(
             @RequestBody AuthenticationRequest request){
-        return ResponseEntity.ok(service.authenticate(request));
+        try{
+            return ResponseEntity.ok(service.authenticate(request));
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                    .body(ex.getMessage());
+        }
     }
 }

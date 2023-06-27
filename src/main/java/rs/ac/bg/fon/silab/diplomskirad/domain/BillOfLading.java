@@ -2,10 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,7 +27,8 @@ public class BillOfLading {
     @PastOrPresent(message = "Issue date can only be in the past or today.")
     protected Date issueDate;
 
-    @Min(value = 0, message = "Total cost must be a positive number.")
+    @DecimalMin(value = "0", inclusive = false)
+    @DecimalMax(value = "1000000")
     protected BigDecimal totalCost;
 
     @ManyToOne(fetch = FetchType.EAGER)

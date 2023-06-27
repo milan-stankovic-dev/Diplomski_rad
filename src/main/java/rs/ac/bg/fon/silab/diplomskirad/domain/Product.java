@@ -1,9 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +19,6 @@ public class Product {
     private long id;
 
     @NotEmpty(message = "You must input a product name.")
-    @NaturalId
     private String productName;
     private double weight;
     private boolean fragile;
@@ -32,7 +29,8 @@ public class Product {
     @Enumerated(value = EnumType.STRING)
     private ProductType type;
 
-    @Size(min = 1, max = 1_000_000, message = "Your product must have a reasonable price.")
+    @DecimalMin(value = "0", inclusive = false)
+    @DecimalMax(value = "1000000")
     private BigDecimal price;
 
 }
