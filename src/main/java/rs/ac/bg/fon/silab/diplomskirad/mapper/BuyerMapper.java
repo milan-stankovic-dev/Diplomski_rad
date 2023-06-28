@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.LegalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.domain.NaturalPerson;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Buyer;
+import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 import rs.ac.bg.fon.silab.diplomskirad.dto.BuyerDTO;
 import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
 import rs.ac.bg.fon.silab.diplomskirad.dto.NaturalPersonDTO;

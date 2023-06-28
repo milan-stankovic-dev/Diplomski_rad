@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.abstraction;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,8 +15,7 @@ import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public sealed abstract class Buyer permits NaturalPerson,
-                                            LegalPerson{
+public abstract class Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
