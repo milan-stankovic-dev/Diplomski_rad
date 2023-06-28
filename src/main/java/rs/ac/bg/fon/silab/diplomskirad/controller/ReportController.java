@@ -21,7 +21,7 @@ public class ReportController {
     public ResponseEntity<Object> insertReport (
             @RequestBody ReportDTO reportDTO) throws Exception {
         try {
-            return ResponseEntity.ok(service.saveReport(reportDTO));
+            return ResponseEntity.ok(service.insertReport(reportDTO));
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
         }

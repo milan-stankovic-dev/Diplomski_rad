@@ -1,12 +1,10 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 
 import java.math.BigDecimal;
 import java.util.Date;
