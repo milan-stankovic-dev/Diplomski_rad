@@ -19,7 +19,7 @@ public class GoodsReceivedNoteService {
     private final GoodsReceivedNoteRepository repository;
     private final GoodsReceivedNoteMapper noteMapper;
     private final ProductRepository productRepository;
-    public GoodsReceivedNoteDTO insertGoodsReceivedNote(
+    public GoodsReceivedNoteDTO insertNote(
             GoodsReceivedNoteDTO noteDTO) {
         var note = noteMapper.dTOtoEntity(noteDTO);
         noteItemValidator(note);

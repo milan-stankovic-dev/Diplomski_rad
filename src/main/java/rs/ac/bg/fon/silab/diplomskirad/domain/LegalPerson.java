@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 
 import java.util.Date;
 
@@ -16,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public non-sealed class LegalPerson extends Buyer{
+public class LegalPerson extends Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

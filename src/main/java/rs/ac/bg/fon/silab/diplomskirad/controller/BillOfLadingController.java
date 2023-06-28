@@ -22,8 +22,7 @@ public class BillOfLadingController {
         try{
             return ResponseEntity.ok(service.insertBillOfLading(billOfLadingDTO));
         }catch (Exception ex){
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
-            throw ex;
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
         }
     }
 }

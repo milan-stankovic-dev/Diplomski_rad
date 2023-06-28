@@ -22,8 +22,7 @@ public class GoodsReceivedNoteController {
     public ResponseEntity<Object> insertNote(
             @RequestBody GoodsReceivedNoteDTO noteDTO){
         try{
-            return ResponseEntity.ok(service
-                    .insertGoodsReceivedNote(noteDTO));
+            return ResponseEntity.ok(service.insertNote(noteDTO));
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
         }

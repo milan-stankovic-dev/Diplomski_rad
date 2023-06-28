@@ -5,12 +5,13 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public non-sealed class NaturalPerson extends Buyer{
+public class NaturalPerson extends Buyer {
     @NotEmpty(message = "You must input the buyer's name.")
     private String buyerName;
     @NotEmpty(message = "You must input the buyer's last name.")

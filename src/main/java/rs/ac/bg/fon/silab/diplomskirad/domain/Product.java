@@ -40,4 +40,5 @@ public class Product {
     public void increaseStockBy(int amountGained){
         this.amount += amountGained;
     }
+
 }
