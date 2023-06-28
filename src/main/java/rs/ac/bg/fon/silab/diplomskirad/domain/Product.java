@@ -33,4 +33,12 @@ public class Product {
     @DecimalMax(value = "1000000")
     private BigDecimal price;
 
+    public void decreaseStockBy(int amountSold){
+        this.amount -= amountSold;
+    }
+
+    public void increaseStockBy(int amountGained){
+        this.amount += amountGained;
+    }
+
 }

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.LegalPerson;
+import rs.ac.bg.fon.silab.diplomskirad.domain.NaturalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.BuyerMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;

@@ -10,9 +10,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
-import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
-import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
-import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
 
 import java.util.Date;
 
@@ -20,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class LegalPerson extends Buyer{
+public class LegalPerson extends Buyer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

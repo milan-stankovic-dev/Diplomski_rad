@@ -19,19 +19,10 @@ public class BillOfLadingController {
     @PostMapping
     public ResponseEntity<Object> insertBillOfLading(
             @RequestBody BillOfLadingDTO billOfLadingDTO){
-        //try{
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
-            System.out.println(1);
+        try{
             return ResponseEntity.ok(service.insertBillOfLading(billOfLadingDTO));
-        //}catch (Exception ex){
-            //return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
-        //}
+        }catch (Exception ex){
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
+        }
     }
 }
