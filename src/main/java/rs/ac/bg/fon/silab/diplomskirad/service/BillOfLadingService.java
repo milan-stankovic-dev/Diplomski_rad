@@ -66,7 +66,7 @@ public class BillOfLadingService {
         var items = bill.getItems();
         for(BillOfLadingItem item : items){
             Product foundProduct =
-                    fetchProductIfPossible(item.getId());
+                    fetchProductIfPossible(item.getProduct().getId());
 
             foundProduct.decreaseStockBy(item.getAmountSold());
         }

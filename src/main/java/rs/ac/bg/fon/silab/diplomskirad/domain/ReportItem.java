@@ -3,6 +3,7 @@ package rs.ac.bg.fon.silab.diplomskirad.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,8 @@ public class ReportItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Size(min = 0, max = 100, message =
-    "Your product can only have used capacities between 0% and 100%")
+    @Min(value = 0, message = "Product capacity must be at least 0")
+    @Max(value = 100, message = "Product capacity cannot exceed 100")
     private double productCapacity;
 
     @ManyToOne(fetch = FetchType.EAGER)

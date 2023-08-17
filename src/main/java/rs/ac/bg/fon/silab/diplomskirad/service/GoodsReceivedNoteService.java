@@ -62,7 +62,7 @@ public class GoodsReceivedNoteService {
         var items = note.getItems();
         for(GoodsReceivedNoteItem item : items){
             Product foundProduct =
-                    fetchProductIfPossible(item.getId());
+                    fetchProductIfPossible(item.getProduct().getId());
 
             foundProduct.increaseStockBy(item.getAmountOrdered());
         }

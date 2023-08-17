@@ -3,6 +3,8 @@ package rs.ac.bg.fon.silab.diplomskirad.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -26,7 +28,9 @@ public class Report {
     @PastOrPresent(message = "Your report may not be set in the future.")
     private Date reportDate;
 
-    @Size(min = 0, max = 100, message = "Your capacity percentage must be set from 0 to 1000")
+//    @Size(min = 0, max = 100, message = "Your capacity percentage must be set from 0 to 1000")
+    @Min(value = 0, message = "Total capacity must be at least 0")
+    @Max(value = 100, message = "Total capacity cannot exceed 100")
     private double totalCapacity;
 
     @OneToMany(fetch = FetchType.EAGER,

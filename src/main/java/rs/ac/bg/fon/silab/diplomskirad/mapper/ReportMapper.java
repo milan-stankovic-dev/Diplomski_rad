@@ -29,6 +29,7 @@ public non-sealed class ReportMapper
 
     @Override
     public Report dTOtoEntity(ReportDTO reportDTO) {
+        System.out.println("DtoToEntity 1");
         var report = new Report(
                 reportDTO.id(),
                 reportDTO.reportDate(),

@@ -11,6 +11,8 @@ import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ReportMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ReportItemRepository;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ReportRepository;
+
+import java.math.BigDecimal;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,13 +23,13 @@ public class ReportService {
     private final ReportItemRepository reportItemRepository;
     private final ProductService productService;
 
-    public ReportDTO insertReport(ReportDTO reportDTO) throws Exception{
+    public ReportDTO insertReport(ReportDTO reportDTO)  {
         var report = reportMapper.dTOtoEntity(reportDTO);
         reportItemValidator(report);
         reportUsagePercentageValidator(report);
         allProductsPresentInReportValidator(report);
-        var savedReport = reportRepository.save(report);
 
+        var savedReport = reportRepository.save(report);
         return reportMapper.entityToDTO(savedReport);
     }
     public List<ReportDTO> getAllReports() {
@@ -73,12 +75,15 @@ public class ReportService {
     }
     private void validatePercentageUsedState(double percentageAvailable,
                                              int totalPossibleStock,
-                                             int productCurrentStock){
-        if(percentageAvailable != (100 - ((double)totalPossibleStock/productCurrentStock))){
-            throw new IllegalStateException("Your item capacity" +
-                    " was wrongly calculated.");
+                                             int productCurrentStock) {
+//        double calculatedPercentage = 100- (Math.round((100.0 - ((double) totalPossibleStock / productCurrentStock)) * 100.0) / 100.0);
+        double calculatedPercentage = 100 - ((double)productCurrentStock)/totalPossibleStock * 100;
+
+        if (Math.abs(percentageAvailable - calculatedPercentage) > 0.01) {
+            throw new IllegalStateException("Your item capacity was wrongly calculated.");
         }
     }
+
 
     private void allProductsPresentInReportValidator(Report report) {
         final List<Product> productsfromDB = new ProductMapper()
@@ -91,10 +96,16 @@ public class ReportService {
                     "database. Reports must pertain to all products in the database.");
         }
         for(Product p : productsFromReport){
+            System.out.println(p + "PRODUCT FOR CHECKING");
+            System.out.println(productsfromDB + " DB PRODUCTS");
+            if(!String.valueOf(p.getPrice()).contains(".")){
+                p.setPrice(p.getPrice().multiply(BigDecimal.valueOf(1.00)));
+            }
+
             if(!productsfromDB.contains(p)){
                 throw new IllegalArgumentException("You have inputted a non existing product. " +
                         "This could be caused by a database update or another person editing " +
-                        "products at the same time as you inserting the report. Please try again.");
+                        "products at the same time as you inserting the report. Please try again." + p);
             }
         }
     }

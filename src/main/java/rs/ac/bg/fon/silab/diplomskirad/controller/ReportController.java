@@ -20,11 +20,8 @@ public class ReportController {
     @PostMapping
     public ResponseEntity<Object> insertReport (
             @RequestBody ReportDTO reportDTO) throws Exception {
-        try {
+
             return ResponseEntity.ok(service.insertReport(reportDTO));
-        }catch (Exception ex){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
-        }
     }
 
     @GetMapping("/all")
