@@ -1,16 +1,16 @@
 package rs.ac.bg.fon.silab.diplomskirad.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.silab.diplomskirad.domain.GoodsReceivedNote;
 import rs.ac.bg.fon.silab.diplomskirad.dto.GoodsReceivedNoteDTO;
 import rs.ac.bg.fon.silab.diplomskirad.service.GoodsReceivedNoteService;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,5 +26,10 @@ public class GoodsReceivedNoteController {
         }catch (Exception ex){
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
         }
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<GoodsReceivedNoteDTO>> getAll(){
+        return ResponseEntity.ok(service.getAllNotes());
     }
 }

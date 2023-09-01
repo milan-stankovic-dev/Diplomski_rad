@@ -12,6 +12,7 @@ import rs.ac.bg.fon.silab.diplomskirad.repository.GoodsReceivedNoteRepository;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -59,8 +60,10 @@ public class GoodsReceivedNoteService {
     }
 
     private void increaseItemStock(GoodsReceivedNote note) {
+        System.out.println("INCREASING STOCK");
         var items = note.getItems();
         for(GoodsReceivedNoteItem item : items){
+            System.out.println(item);
             Product foundProduct =
                     fetchProductIfPossible(item.getProduct().getId());
 
@@ -73,8 +76,12 @@ public class GoodsReceivedNoteService {
                 .findById(id);
         if(productFromDBopt.isEmpty()){
             throw new EntityNotFoundException("You are trying " +
-                    "to sell a non-existing item.");
+                    "to buy a non-existing item.");
         }
         return productFromDBopt.get();
+    }
+
+    public List<GoodsReceivedNoteDTO> getAllNotes() {
+        return noteMapper.listOfEntitiesToListOfDTOs(repository.findAll());
     }
 }
