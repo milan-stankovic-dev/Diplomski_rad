@@ -21,7 +21,8 @@ public non-sealed class RegisterRequestUserMapper implements DtoDomainMapper<Reg
                 user.getName(),
                 user.getLastname(),
                 user.getUsername(),
-                user.getPassword()
+                user.getPassword(),
+                user.getEmail()
         );
 
         return registerRequest;
@@ -36,6 +37,7 @@ public non-sealed class RegisterRequestUserMapper implements DtoDomainMapper<Reg
         user.setPassword(
                 passwordEncoder.encode(registerRequest.password())
         );
+        user.setEmail(registerRequest.email());
         user.setRole(Role.USER);
 
         return user;

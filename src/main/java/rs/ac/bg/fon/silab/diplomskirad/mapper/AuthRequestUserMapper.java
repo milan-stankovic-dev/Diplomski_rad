@@ -29,7 +29,7 @@ public non-sealed class AuthRequestUserMapper
         var user = new User();
         user.setUsername(authenticationRequest.username());
         user.setPassword(
-            passwordEncoder.encode(user.getPassword())
+            passwordEncoder.encode(authenticationRequest.password())
         );
         user.setRole(Role.USER);
 

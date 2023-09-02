@@ -34,6 +34,11 @@ public class User implements UserDetails {
     @NotEmpty(message = "Last name cannot be blank.")
     private String lastname;
 
+    @NotEmpty(message = "Email cannot be blank.")
+    private String email;
+
+    private boolean verified = false;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
