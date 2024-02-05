@@ -15,9 +15,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tbl_bill_of_lading")
 public class BillOfLading {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
 
     @FutureOrPresent(message = "Deadline must be set in the future or the current date.")

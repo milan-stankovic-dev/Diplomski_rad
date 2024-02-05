@@ -1,9 +1,6 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
@@ -17,9 +14,10 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tbl_legal_person")
 public class LegalPerson extends Buyer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "You must input a firm name.")

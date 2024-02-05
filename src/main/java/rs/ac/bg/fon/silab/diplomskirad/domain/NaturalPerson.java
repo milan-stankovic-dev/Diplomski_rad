@@ -1,6 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,7 @@ import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "tbl_natural_person")
 public class NaturalPerson extends Buyer {
     @NotEmpty(message = "You must input the buyer's name.")
     private String buyerName;

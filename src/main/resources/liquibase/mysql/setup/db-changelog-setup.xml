@@ -1,0 +1,11 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <property name="defaultSchemaName" value="diplomski_rad"/>
+<!--    <changeSet id="create_order_xml_procedure.sql" author="milan s.">-->
+<!--        <sqlFile path="ddl/create_order_xml_procedure.sql" relativeToChangelogFile="true"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet id="create_order_queue.sql" author="milan s.">-->
+<!--        <sqlFile path="ddl/create_order_queue.sql" relativeToChangelogFile="true"/>-->
+</databaseChangeLog>

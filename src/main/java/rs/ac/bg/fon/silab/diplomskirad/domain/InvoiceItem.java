@@ -1,6 +1,5 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
@@ -11,16 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tbl_bill_of_lading_item")
-public class BillOfLadingItem {
+@Table(name = "tbl_invoice_item")
+public class InvoiceItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Min(value = 1, message = "You must sell at least one item.")
-    private int amountSold;
+    @Min(value = 1, message = "You must order at least one item.")
+    private int amountOrdered;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
     private Product product;
+
 }
