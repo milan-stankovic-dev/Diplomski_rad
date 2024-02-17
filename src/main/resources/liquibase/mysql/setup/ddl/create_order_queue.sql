@@ -1,5 +1,5 @@
-create table order_queue(
-    id int auto_increment primary key,
-    xml_data text
-    created_at TIMESTAMP default CURRENT_TIMESTAMP
+create table if not exists tbl_order_queue (
+    id SERIAL not null primary key,
+    xml_data XML not null,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

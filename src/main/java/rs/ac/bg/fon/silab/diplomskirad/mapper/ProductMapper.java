@@ -14,7 +14,7 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 product.getProductName(),
                 product.getWeight(),
                 product.isFragile(),
-                product.getAmount(),
+                product.getCurrentStock(),
                 product.getType(),
                 product.getPrice()
         );
@@ -30,6 +30,8 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 productDTO.weight(),
                 productDTO.fragile(),
                 productDTO.amount(),
+                0,
+                1,
                 productDTO.type(),
                 productDTO.price()
         );

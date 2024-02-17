@@ -55,7 +55,7 @@ public class ReportService {
         for(ReportItem reportItem : report.getReportItems()){
             validateSingleItem(reportItem);
             totalWarehouseSpace += reportItem.getTotalAvailableCapacity();
-            totalNumberOfWarehouseItems += reportItem.getProduct().getAmount();
+            totalNumberOfWarehouseItems += reportItem.getProduct().getCurrentStock();
         }
 
         validatePercentageUsedState(totalPercentageAvailable,
@@ -69,7 +69,7 @@ public class ReportService {
         }
         final double itemPercentageAvailable = reportItem.getProductCapacity();
         final int totalPossibleStock = reportItem.getTotalAvailableCapacity();
-        final int productCurrentStock = reportItem.getProduct().getAmount();
+        final int productCurrentStock = reportItem.getProduct().getCurrentStock();
 
         validatePercentageUsedState(itemPercentageAvailable, totalPossibleStock, productCurrentStock);
     }

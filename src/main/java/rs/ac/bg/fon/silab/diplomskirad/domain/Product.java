@@ -27,7 +27,13 @@ public class Product {
     private boolean fragile;
 
     @Min(value = 0, message = "You may not have less than 0 products.")
-    private int amount;
+    private int currentStock;
+
+    @Min(value = 0, message = "Your minimal stock must be a positive integer value.")
+    private int minimalStock;
+
+    @Min(value = 1, message = "You must order at least one product")
+    private int orderAmount;
 
     @Enumerated(value = EnumType.STRING)
     private ProductType type;
@@ -37,11 +43,11 @@ public class Product {
     private BigDecimal price;
 
     public void decreaseStockBy(int amountSold){
-        this.amount -= amountSold;
+        this.currentStock -= amountSold;
     }
 
     public void increaseStockBy(int amountGained){
-        this.amount += amountGained;
+        this.currentStock += amountGained;
     }
 
 }
