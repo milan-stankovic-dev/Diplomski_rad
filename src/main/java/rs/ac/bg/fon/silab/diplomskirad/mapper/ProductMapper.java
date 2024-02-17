@@ -33,7 +33,8 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 0,
                 1,
                 productDTO.type(),
-                productDTO.price()
+                productDTO.price(),
+                null
         );
 
         return product;

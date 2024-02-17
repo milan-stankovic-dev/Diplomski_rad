@@ -42,6 +42,10 @@ public class Product {
     @DecimalMax(value = "1000000")
     private BigDecimal price;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "supplier_id")
+    private Partner supplier;
+
     public void decreaseStockBy(int amountSold){
         this.currentStock -= amountSold;
     }
