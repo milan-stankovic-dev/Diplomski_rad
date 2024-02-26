@@ -3,23 +3,40 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <property name="defaultSchemaName" value="public"/>
-        <changeSet id="create_order_queue" author="milan s.">
-            <sqlFile path="ddl/create_order_queue.sql"
-                     relativeToChangelogFile="true" />
-        </changeSet>
-        <changeSet id="create_order_xml_procedure" author="milan s.">
-            <sqlFile path="ddl/create_order_xml_procedure.sql"
+        <changeSet id="create_func_generate_invoice" author="milan s.">
+            <sqlFile path="ddl/create_func_generate_invoice.sql"
                      relativeToChangelogFile="true" splitStatements="false"/>
         </changeSet>
          <changeSet id="save_invoice" author="milan s.">
-            <sqlFile path="dml/save_invoice_function.sql"
+            <sqlFile path="ddl/create_func_insert_invoice.sql"
                      relativeToChangelogFile="true" splitStatements="false"/>
         </changeSet>
-        <changeSet id="create_invoice_check" author="milan s.">
-            <sqlFile path="ddl/create_procedure_check_for_invoice.sql"
+        <changeSet id="create_func_is_processed" author="milan s.">
+            <sqlFile path="ddl/create_func_is_processed.sql"
+                 relativeToChangelogFile="true" splitStatements="false"/>
+        </changeSet>
+        <changeSet id="create_func_get_order_supplier_ids" author="milan s.">
+             <sqlFile path="ddl/create_func_get_order_supplier_ids.sql"
+                 relativeToChangelogFile="true" splitStatements="false"/>
+        </changeSet>
+        <changeSet id="create_func_check_for_invoice" author="milan s.">
+            <sqlFile path="ddl/create_func_check_for_invoice.sql"
                      relativeToChangelogFile="true" splitStatements="false"/>
         </changeSet>
-        <changeSet id="create_invoice_trigger" author="milan s.">
-            <sqlFile path="ddl/create_invoice_trigger.sql" relativeToChangelogFile="true"/>
+        <changeSet id="create_tbl_xml_schema" author="milan s.">
+            <sqlFile path="ddl/create_tbl_xml_schema.sql"
+                     relativeToChangelogFile="true"/>
+        </changeSet>
+        <changeSet id="populate_tbl_xml_schema" author="milan s.">
+            <sqlFile path="dml/populate_tbl_xml_schema.sql"
+                     relativeToChangelogFile="true"/>
+        </changeSet>
+        <changeSet id="create_tbl_order_queue" author="milan s.">
+            <sqlFile path="ddl/create_tbl_order_queue.sql"
+                    relativeToChangelogFile="true" splitStatements="false"/>
+        </changeSet>
+        <changeSet id="create_trigger_invoice_generation_trigger" author="milan s.">
+            <sqlFile path="ddl/create_trigger_invoice_generation_trigger.sql"
+                     relativeToChangelogFile="true"/>
         </changeSet>
 </databaseChangeLog>
