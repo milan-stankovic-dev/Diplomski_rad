@@ -1,18 +1,12 @@
 package rs.ac.bg.fon.silab.diplomskirad.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.diplomskirad.config.JwtService;
-import rs.ac.bg.fon.silab.diplomskirad.domain.User;
+import rs.ac.bg.fon.silab.diplomskirad.domain.user.User;
 import rs.ac.bg.fon.silab.diplomskirad.exception.UserAlreadyRegisteredException;
 import rs.ac.bg.fon.silab.diplomskirad.exception.UserNotVerifiedException;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.AuthRequestUserMapper;

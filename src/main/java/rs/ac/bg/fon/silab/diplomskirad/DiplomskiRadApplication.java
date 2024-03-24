@@ -1,7 +1,13 @@
 package rs.ac.bg.fon.silab.diplomskirad;
 
+import io.jkratz.mediator.core.Mediator;
+import io.jkratz.mediator.core.Registry;
+import io.jkratz.mediator.spring.SpringMediator;
+import io.jkratz.mediator.spring.SpringRegistry;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -10,7 +16,19 @@ import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 
 @SpringBootApplication
+@RequiredArgsConstructor
 public class DiplomskiRadApplication {
+	private final ApplicationContext context;
+
+	@Bean
+	public Registry registry() {
+		return new SpringRegistry(context);
+	}
+
+	@Bean
+	public Mediator mediator(Registry registry) {
+		return new SpringMediator(registry);
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(DiplomskiRadApplication.class, args);
@@ -31,7 +49,5 @@ public class DiplomskiRadApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter(urlBasedCorsConfigurationSource);
 	}
-
-
 }
 
