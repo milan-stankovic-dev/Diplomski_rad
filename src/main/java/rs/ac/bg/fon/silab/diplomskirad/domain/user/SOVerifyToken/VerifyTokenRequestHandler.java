@@ -2,7 +2,6 @@ package rs.ac.bg.fon.silab.diplomskirad.domain.user.SOVerifyToken;
 
 import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.RequestHandler;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.val;
@@ -10,10 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.config.JwtService;
-import rs.ac.bg.fon.silab.diplomskirad.mapper.AuthRequestUserMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.TokenValidationRequestMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.UserRepository;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.AuthenticationRequest;
 import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenValidationRequest;
 import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenValidationResponse;
 
@@ -28,33 +25,28 @@ public class VerifyTokenRequestHandler
     private final UserRepository repository;
 
     @Setter
-    private String tokenToValidate;
-    public boolean verifyToken(String token, TokenValidationRequest request) {
-        try{
-            val user = userMapper.dTOtoEntity(request);
-            if (jwtService.isTokenValid(token, user)) {
-                val userFromDB = repository.findByUsername(user.getUsername())
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-                userFromDB.setVerified(true);
-                repository.save(userFromDB);
+    private String tokenToVerify;
 
-                return true;
-
-            } else {
-                return false;
-            }
-        }catch (Exception ex){
-            return false;
-        }
+    private void setUserToVerifiedByUsername(String username) {
+        val userFromDB = repository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        userFromDB.setVerified(true);
+        repository.save(userFromDB);
     }
+
     @Override
     public TokenValidationResponse handle(@NotNull TokenValidationRequest
                                                       tokenValidationRequest) {
 
-        final Boolean valid = verifyToken(null, tokenValidationRequest);
+        val userFromRequest = userMapper.dTOtoEntity(tokenValidationRequest);
+        final boolean valid = jwtService.isTokenValid(this.tokenToVerify,
+                userFromRequest);
+
+        if(valid)
+            setUserToVerifiedByUsername(userFromRequest.getUsername());
+
         val response = new TokenValidationResponse(valid);
         this.mediator.emit(response);
-
         return response;
     }
 }

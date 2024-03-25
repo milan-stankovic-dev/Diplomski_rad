@@ -26,22 +26,9 @@ public class UserController {
     private final Mediator mediator;
     private final VerifyTokenRequestHandler tokenRequestHandler;
 
-//    @PostMapping("/registerOLD")
-//    public ResponseEntity<Object> registerUser(
-//            @RequestBody RegisterRequest request){
-//       try{
-//           return ResponseEntity.ok(service.register(request));
-//       }
-//       catch (UserAlreadyRegisteredException ex){
-//           return ResponseEntity.status(HttpStatus.FORBIDDEN)
-//                   .body(ex.getMessage());
-//       }
-//    }
-
     @PostMapping("/register")
     public ResponseEntity<Object> registerUserNew(
             @RequestBody RegisterRequest request){
-
         val token = this.mediator.dispatch((Request<?>) request);
         return ResponseEntity.ok(token);
     }
@@ -49,7 +36,6 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<Object> loginUser(
             @RequestBody AuthenticationRequest request){
-
         val token = this.mediator.dispatch(request);
         return ResponseEntity.ok(token);
     }
@@ -58,20 +44,11 @@ public class UserController {
     public ResponseEntity<Boolean> verifyToken(
             @PathVariable String token,
             @RequestBody TokenValidationRequest request) {
-
-        tokenRequestHandler.setTokenToValidate(token);
+        tokenRequestHandler.setTokenToVerify(token);
         val result = this.mediator.dispatch(request);
 
         return ResponseEntity.ok(result.valid());
     }
-
-//    @PostMapping("/resend-emailOLD")
-//    public ResponseEntity<Void> resendEmailOld(
-//            @RequestBody RegisterRequest request
-//    ){
-//        service.sendEmailToUser(registerUserMapper.dTOtoEntity(request));
-//        return ResponseEntity.ok().build();
-//    }
 
     @PostMapping("/resend-email")
     public ResponseEntity<Void> resendEmail(

@@ -25,7 +25,7 @@ public class LoginUserRequestHandler
     private final UserRepository repository;
     private final JwtService jwtService;
     private final Mediator mediator;
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    private AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.username(), request.password()
@@ -38,7 +38,7 @@ public class LoginUserRequestHandler
             throw new UserNotVerifiedException("Please verify your account via email to proceed.");
         }
 
-        var jwtToken = jwtService.generateToken(user);
+        val jwtToken = jwtService.generateToken(user);
 
         return new AuthenticationResponse(jwtToken);
     }
