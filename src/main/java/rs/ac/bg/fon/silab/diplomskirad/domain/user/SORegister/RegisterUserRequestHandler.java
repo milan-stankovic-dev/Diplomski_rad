@@ -27,8 +27,7 @@ public class RegisterUserRequestHandler implements RequestHandler<RegisterReques
     private final JwtService jwtService;
     private final UserUtil util;
 
-    private AuthenticationResponse register(RegisterRequest request)
-            throws UserAlreadyRegisteredException {
+    private AuthenticationResponse register(RegisterRequest request) {
 
         val user = registerRequestUserMapper.dTOtoEntity(request);
 
@@ -45,12 +44,8 @@ public class RegisterUserRequestHandler implements RequestHandler<RegisterReques
 
     @Override
     public AuthenticationResponse handle(@NotNull RegisterRequest registerRequest) {
-        AuthenticationResponse token = null;
-        try {
-            token = register(registerRequest);
-        } catch (UserAlreadyRegisteredException e) {
-            throw new RuntimeException(e);
-        }
+        AuthenticationResponse token =  register(registerRequest);
+
         this.mediator.emit(token);
 
         return token;
