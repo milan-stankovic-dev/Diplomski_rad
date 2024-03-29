@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.BusinessDocument;
 import rs.ac.bg.fon.silab.diplomskirad.domain.bill_of_lading_item.BillOfLadingItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.Buyer;
 
@@ -17,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "tbl_bill_of_lading")
-public class BillOfLading {
+public class BillOfLading implements BusinessDocument<BillOfLadingItem> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long id;
@@ -40,5 +41,10 @@ public class BillOfLading {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     private Set<BillOfLadingItem> items;
+
+    @Override
+    public BigDecimal getTotalValue() {
+        return totalCost;
+    }
 
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.BusinessDocumentItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 
 @Data
@@ -12,7 +13,7 @@ import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 @AllArgsConstructor
 @Entity
 @Table(name = "tbl_goods_received_note_item")
-public class GoodsReceivedNoteItem {
+public class GoodsReceivedNoteItem implements BusinessDocumentItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,4 +25,8 @@ public class GoodsReceivedNoteItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Override
+    public int getAmountTransacted() {
+        return amountOrdered;
+    }
 }
