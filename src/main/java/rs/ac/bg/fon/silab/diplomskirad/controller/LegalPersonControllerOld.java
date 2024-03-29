@@ -12,8 +12,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/v1/legal-person")
-public class LegalPersonController {
+@RequestMapping(value = "/api/v1/legal-person-old")
+public class LegalPersonControllerOld {
     private final LegalPersonService service;
 
     @GetMapping("/all")

@@ -1,10 +1,11 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.invoice_item;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
 
 @Data
 @NoArgsConstructor

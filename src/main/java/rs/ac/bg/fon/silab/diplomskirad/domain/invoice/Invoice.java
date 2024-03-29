@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.invoice;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -7,6 +7,7 @@ import jakarta.validation.constraints.PastOrPresent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import rs.ac.bg.fon.silab.diplomskirad.domain.invoice_item.InvoiceItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.partner.Partner;
 
 import java.math.BigDecimal;
