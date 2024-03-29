@@ -22,7 +22,7 @@ public class FirmController {
     @GetMapping("/all")
     public ResponseEntity<List<FirmDTO>> getAllFirms() {
         final DTOListResponse<FirmDTO> response =
-                this.mediator.dispatch(new EmptyRequest<>());
+                this.mediator.dispatch(new GetFirmsRequest());
 
         return ResponseEntity.ok(response.dtos());
     }

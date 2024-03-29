@@ -10,9 +10,10 @@ import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
 @Component
 @Log
 public class InsertReportEventHandler
-        implements EventHandler<DTOListResponse<ReportDTO>> {
+        implements EventHandler<ReportDTO> {
+
     @Override
-    public void handle(@NotNull DTOListResponse<ReportDTO> reportDTODTOListResponse) {
-        log.info("Fetched all reports from the database.");
+    public void handle(@NotNull ReportDTO reportDTO) {
+        log.info("Inserted report in the db. " + reportDTO);
     }
 }

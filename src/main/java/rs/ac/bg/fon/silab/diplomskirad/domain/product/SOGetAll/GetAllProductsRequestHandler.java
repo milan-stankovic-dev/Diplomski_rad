@@ -8,7 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.GetProductsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.PartnerMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
 
@@ -17,7 +19,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetAllProductsRequestHandler
-        implements RequestHandler<EmptyRequest<DTOListResponse<ProductDTO>>,
+        implements RequestHandler<GetProductsRequest,
                 DTOListResponse<ProductDTO>> {
 
     private final Mediator mediator;
@@ -25,14 +27,11 @@ public class GetAllProductsRequestHandler
 
     private List<ProductDTO> getAllProductDTOs() {
         val products = repository.findAll();
-        return new ProductMapper().listOfEntitiesToListOfDTOs(products);
+        return new ProductMapper(new PartnerMapper()).listOfEntitiesToListOfDTOs(products);
     }
-
     @Override
-    public DTOListResponse<ProductDTO> handle(
-            @NotNull EmptyRequest<DTOListResponse<ProductDTO>>
-                    dtoListResponseEmptyRequest) {
-
+    public DTOListResponse<ProductDTO> handle(@NotNull GetProductsRequest
+                                                          getProductsRequest) {
         val foundProductDTOs =
                 getAllProductDTOs();
         val responseProducts =

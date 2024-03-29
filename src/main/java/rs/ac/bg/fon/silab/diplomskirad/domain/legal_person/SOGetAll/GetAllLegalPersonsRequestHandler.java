@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.legal_person.GetLegalPersonsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.domain.legal_person.LegalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
@@ -18,7 +19,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetAllLegalPersonsRequestHandler
-        implements RequestHandler<EmptyRequest<DTOListResponse<LegalPersonDTO>>,
+        implements RequestHandler<GetLegalPersonsRequest,
                     DTOListResponse<LegalPersonDTO>> {
 
     private final Mediator mediator;
@@ -30,9 +31,8 @@ public class GetAllLegalPersonsRequestHandler
         return new LegalPersonMapper().listOfEntitiesToListOfDTOs(foundLegalPersons);
     }
     @Override
-    public DTOListResponse<LegalPersonDTO> handle(
-            @NotNull EmptyRequest<DTOListResponse<LegalPersonDTO>>
-                    dtoListResponseEmptyRequest) {
+    public DTOListResponse<LegalPersonDTO> handle(@NotNull GetLegalPersonsRequest
+                                                              getLegalPersonsRequest) {
 
         val foundLegalPersonDTOs =
                 getAllLegalPersons();

@@ -33,7 +33,7 @@ public class InsertBillRequestHandler
             throw new IllegalArgumentException("Bill must not be empty.");
         }
         val items = bill.getItems();
-        if(items == null || items.size() == 0){
+        if(items == null || items.isEmpty()){
             throw new IllegalStateException("Your bill of lading has" +
                     " no items.");
         }

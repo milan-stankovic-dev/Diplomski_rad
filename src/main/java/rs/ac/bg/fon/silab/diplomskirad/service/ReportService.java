@@ -7,6 +7,7 @@ import rs.ac.bg.fon.silab.diplomskirad.domain.report.Report;
 import rs.ac.bg.fon.silab.diplomskirad.domain.report_item.ReportItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
 import rs.ac.bg.fon.silab.diplomskirad.exception.CollectionSizeMismatchException;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.PartnerMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ReportMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ReportItemRepository;
@@ -85,7 +86,7 @@ public class ReportService {
 
 
     private void allProductsPresentInReportValidator(Report report) {
-        final List<Product> productsfromDB = new ProductMapper()
+        final List<Product> productsfromDB = new ProductMapper( new PartnerMapper())
                 .listOfDTOsToListOfEntities(productService.getAllProductDTOs());
         final List<Product> productsFromReport = report.getReportItems().stream()
                 .map(ReportItem::getProduct).toList();
@@ -103,8 +104,9 @@ public class ReportService {
 
             if(!productsfromDB.contains(p)){
                 throw new IllegalArgumentException("You have inputted a non existing product. " +
-                        "This could be caused by a database update or another person editing " +
-                        "products at the same time as you inserting the report. Please try again." + p);
+                        " Please try again. Violating product:" + p + "\n" +
+                        "ALL PRODUCTS in DB: " + productsfromDB);
+
             }
         }
     }

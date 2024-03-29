@@ -92,6 +92,9 @@ public class InsertNoteRequestHandler
 
     @Override
     public GoodsReceivedNoteDTO handle(@NotNull GoodsReceivedNoteDTO goodsReceivedNoteDTO) {
-        return null;
+        val insertedNote = insertNote(goodsReceivedNoteDTO);
+
+        this.mediator.emit(insertedNote);
+        return insertedNote;
     }
 }

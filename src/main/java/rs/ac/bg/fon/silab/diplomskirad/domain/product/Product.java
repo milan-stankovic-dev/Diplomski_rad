@@ -12,7 +12,8 @@ import rs.ac.bg.fon.silab.diplomskirad.domain.partner.Partner;
 import java.math.BigDecimal;
 
 @Data
-@EqualsAndHashCode(exclude = "price")
+@EqualsAndHashCode(exclude = {"price", "currentStock",
+        "minimalStock", "orderAmount", "supplier"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -33,7 +34,7 @@ public class Product {
     @Min(value = 0, message = "Your minimal stock must be a positive integer value.")
     private int minimalStock;
 
-    @Min(value = 1, message = "You must order at least one product")
+    @Min(value = 0, message = "You must order at least one product") //VRATI NA 1!!
     private int orderAmount;
 
     @Enumerated(value = EnumType.STRING)

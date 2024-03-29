@@ -14,7 +14,10 @@ public record ProductDTO(
     double weight,
     boolean fragile,
     int amount,
+    int minimalStock,
+    int orderAmount,
     ProductType type,
     @NonNull
-    BigDecimal price
+    BigDecimal price,
+    PartnerDTO supplier
 )implements Request<ProductDTO>, Event { }

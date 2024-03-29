@@ -34,7 +34,7 @@ public class InsertReportRequestHandler
         reportUsagePercentageValidator(report);
         allProductsPresentInReportValidator(report);
 
-        var savedReport = repository.save(report);
+        val savedReport = repository.save(report);
         return reportMapper.entityToDTO(savedReport);
     }
 
@@ -80,7 +80,9 @@ public class InsertReportRequestHandler
         double calculatedPercentage = 100 - ((double)productCurrentStock)/totalPossibleStock * 100;
 
         if (Math.abs(percentageAvailable - calculatedPercentage) > 0.01) {
-            throw new IllegalStateException("Your item capacity was wrongly calculated.");
+            throw new IllegalStateException("Your item capacity was wrongly calculated.\n" +
+                    "Calculated: " + calculatedPercentage + "\n Actual: " + percentageAvailable + "\n" +
+                    "Product current stock: " + productCurrentStock + "\n Total possible Stock: " + totalPossibleStock);
         }
     }
 
@@ -104,8 +106,8 @@ public class InsertReportRequestHandler
 
             if(!productsFromDB.contains(p)){
                 throw new IllegalArgumentException("You have inputted a non existing product. " +
-                        "This could be caused by a database update or another person editing " +
-                        "products at the same time as you inserting the report. Please try again." + p);
+                        " Please try again. Violating product:" + p + "\n" +
+                        "ALL PRODUCTS in DB: " + productsFromDB);
             }
         }
     }

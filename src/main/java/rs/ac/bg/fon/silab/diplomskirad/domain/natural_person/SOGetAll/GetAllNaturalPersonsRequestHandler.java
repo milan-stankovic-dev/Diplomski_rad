@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.natural_person.GetNaturalPersonsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.domain.natural_person.NaturalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.dto.NaturalPersonDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.NaturalPersonMapper;
@@ -18,7 +19,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetAllNaturalPersonsRequestHandler
-        implements RequestHandler<EmptyRequest<DTOListResponse<NaturalPersonDTO>>,
+        implements RequestHandler<GetNaturalPersonsRequest,
             DTOListResponse<NaturalPersonDTO>> {
 
     private final Mediator mediator;
@@ -29,18 +30,19 @@ public class GetAllNaturalPersonsRequestHandler
 
         return new NaturalPersonMapper().listOfEntitiesToListOfDTOs(foundNaturalPersons);
     }
+
     @Override
     public DTOListResponse<NaturalPersonDTO> handle(
-            @NotNull EmptyRequest<DTOListResponse<NaturalPersonDTO>>
-                    dtoListResponseEmptyRequest) {
+            @NotNull GetNaturalPersonsRequest
+                    getNaturalPersonsRequest) {
 
-            val foundNaturalPersons =
-                    getAllNaturalPersons();
-            val naturalPersonsResponse =
-                    new DTOListResponse<NaturalPersonDTO>(foundNaturalPersons);
+        val foundNaturalPersons =
+                getAllNaturalPersons();
+        val naturalPersonsResponse =
+                new DTOListResponse<NaturalPersonDTO>(foundNaturalPersons);
 
-            this.mediator.emit(naturalPersonsResponse);
+        this.mediator.emit(naturalPersonsResponse);
 
-            return naturalPersonsResponse;
+        return naturalPersonsResponse;
     }
 }

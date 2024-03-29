@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
 import rs.ac.bg.fon.silab.diplomskirad.domain.firm.Firm;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
+import rs.ac.bg.fon.silab.diplomskirad.domain.firm.GetFirmsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.FirmDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.FirmMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.FirmRepository;
@@ -18,8 +19,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetAllFirmsRequestHandler
-        implements RequestHandler<EmptyRequest<DTOListResponse<FirmDTO>>,
-        DTOListResponse<FirmDTO>> {
+        implements RequestHandler<GetFirmsRequest, DTOListResponse<FirmDTO>> {
 
     private final FirmRepository repository;
     private final FirmMapper firmMapper;
@@ -31,9 +31,7 @@ public class GetAllFirmsRequestHandler
     }
 
     @Override
-    public DTOListResponse<FirmDTO> handle(@NotNull EmptyRequest<DTOListResponse<FirmDTO>>
-                                                  firmDTOListResponseEmptyRequest) {
-
+    public DTOListResponse<FirmDTO> handle(@NotNull GetFirmsRequest getFirmsRequest) {
         val foundFirmDTOs = getAllFirms();
         val foundFirmsResponse =
                 new DTOListResponse<FirmDTO>(foundFirmDTOs);

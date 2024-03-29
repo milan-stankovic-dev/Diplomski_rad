@@ -22,7 +22,7 @@ public class LegalPersonController {
     @GetMapping("/all")
     public ResponseEntity<List<LegalPersonDTO>> getAllLegalPersons() {
         final DTOListResponse<LegalPersonDTO> legalPersonsResponse
-                = this.mediator.dispatch(new EmptyRequest<>());
+                = this.mediator.dispatch(new GetLegalPersonsRequest());
 
         return ResponseEntity.ok(legalPersonsResponse.dtos());
     }

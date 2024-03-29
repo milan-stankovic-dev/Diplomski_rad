@@ -32,7 +32,7 @@ public class ReportController {
     @GetMapping("/all")
     public ResponseEntity<List<ReportDTO>> getAllReports() {
         final DTOListResponse<ReportDTO> foundReports =
-                this.mediator.dispatch(new EmptyRequest<>());
+                this.mediator.dispatch(new GetReportsRequest());
 
         return ResponseEntity.ok(foundReports.dtos());
     }

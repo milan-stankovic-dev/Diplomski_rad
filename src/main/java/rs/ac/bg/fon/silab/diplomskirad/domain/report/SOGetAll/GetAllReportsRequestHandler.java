@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.report.GetReportsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ReportMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ReportRepository;
@@ -18,7 +19,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class GetAllReportsRequestHandler
-        implements RequestHandler<EmptyRequest<DTOListResponse<ReportDTO>>,
+        implements RequestHandler<GetReportsRequest,
             DTOListResponse<ReportDTO>> {
 
     private final Mediator mediator;
@@ -30,12 +31,10 @@ public class GetAllReportsRequestHandler
                 repository.findAll());
     }
     @Override
-    public DTOListResponse<ReportDTO> handle(
-            @NotNull EmptyRequest<DTOListResponse<ReportDTO>>
-                    dtoListResponseEmptyRequest) {
-
+    public DTOListResponse<ReportDTO> handle(@NotNull GetReportsRequest
+                                                         getReportsRequest) {
         val reportsFound =
-            getAllReports();
+                getAllReports();
         val reportsResponse =
                 new DTOListResponse<ReportDTO>(reportsFound);
 

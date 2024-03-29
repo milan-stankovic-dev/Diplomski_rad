@@ -5,16 +5,11 @@ import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.Request;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
-import rs.ac.bg.fon.silab.diplomskirad.domain.user.SOVerifyToken.VerifyTokenRequestHandler;
-import rs.ac.bg.fon.silab.diplomskirad.exception.UserAlreadyRegisteredException;
-import rs.ac.bg.fon.silab.diplomskirad.mapper.AuthRequestUserMapper;
+import rs.ac.bg.fon.silab.diplomskirad.domain.TokenVerificationRequestWithToken;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.RegisterRequestUserMapper;
-import rs.ac.bg.fon.silab.diplomskirad.service.UserService;
+import rs.ac.bg.fon.silab.diplomskirad.mapper.TokenValidationWithTokenMapper;
 import rs.ac.bg.fon.silab.diplomskirad.userUtils.*;
 
 @RequiredArgsConstructor
@@ -24,8 +19,7 @@ import rs.ac.bg.fon.silab.diplomskirad.userUtils.*;
 public class UserController {
     private final RegisterRequestUserMapper registerUserMapper;
     private final Mediator mediator;
-    private final VerifyTokenRequestHandler tokenRequestHandler;
-
+    private final TokenValidationWithTokenMapper tokenMapper;
     @PostMapping("/register")
     public ResponseEntity<Object> registerUserNew(
             @RequestBody RegisterRequest request){
@@ -43,11 +37,11 @@ public class UserController {
     @PostMapping("/verify-token/{token}")
     public ResponseEntity<Boolean> verifyToken(
             @PathVariable String token,
-            @RequestBody TokenValidationRequest request) {
-        tokenRequestHandler.setTokenToVerify(token);
-        val result = this.mediator.dispatch(request);
+            @RequestBody TokenVerificationRequest request) {
+        val result = this.mediator.dispatch(
+                tokenMapper.addToken(request, token));
 
-        return ResponseEntity.ok(result.valid());
+        return ResponseEntity.ok(result.verified());
     }
 
     @PostMapping("/resend-email")

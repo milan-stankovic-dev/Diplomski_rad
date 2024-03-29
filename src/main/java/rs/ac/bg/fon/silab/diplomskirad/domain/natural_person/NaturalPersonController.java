@@ -24,7 +24,7 @@ public class NaturalPersonController {
     @GetMapping("/all")
     public ResponseEntity<List<NaturalPersonDTO>> getAllNaturalPersons(){
         final DTOListResponse<NaturalPersonDTO> naturalPersonResponse
-                = this.mediator.dispatch(new EmptyRequest<>());
+                = this.mediator.dispatch(new GetNaturalPersonsRequest());
 
         return ResponseEntity.ok(naturalPersonResponse.dtos());
     }

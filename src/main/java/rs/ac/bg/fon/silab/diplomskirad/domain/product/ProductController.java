@@ -14,18 +14,21 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(value = "/api/v1/product")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     private final Mediator mediator;
     @GetMapping("/all")
     public ResponseEntity<List<ProductDTO>> getAllProducts() {
         final DTOListResponse<ProductDTO> productsResponse =
-            this.mediator.dispatch(new EmptyRequest<>());
+            this.mediator.dispatch(new GetProductsRequest());
 
         return ResponseEntity.ok(productsResponse.dtos());
     }
 
     @GetMapping("/all/named/{name}")
-    public ResponseEntity<List<ProductDTO>> getAllProductsWithName(@PathVariable String name){
+    public ResponseEntity<List<ProductDTO>> getAllProductsWithName(
+            @PathVariable String name){
+
         val productServiceResponse =
                 mediator.dispatch(new ProductNamedRequest(name));
 

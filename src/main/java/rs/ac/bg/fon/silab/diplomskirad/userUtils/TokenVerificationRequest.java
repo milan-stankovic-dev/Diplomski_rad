@@ -2,8 +2,8 @@ package rs.ac.bg.fon.silab.diplomskirad.userUtils;
 
 import io.jkratz.mediator.core.Request;
 
-public record TokenValidationRequest(
+public record TokenVerificationRequest(
         String username,
         String password
-) implements Request<TokenValidationResponse> {
+) implements Request<TokenVerificationResponse> {
 }
