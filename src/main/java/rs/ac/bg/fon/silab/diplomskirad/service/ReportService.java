@@ -2,7 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Report;
 import rs.ac.bg.fon.silab.diplomskirad.domain.report_item.ReportItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;

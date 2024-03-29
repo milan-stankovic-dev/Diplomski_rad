@@ -1,5 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.dto;
 
+import io.jkratz.mediator.core.Event;
+import io.jkratz.mediator.core.Request;
 import lombok.NonNull;
 import rs.ac.bg.fon.silab.diplomskirad.domain.enumeration.ProductType;
 
@@ -15,4 +17,4 @@ public record ProductDTO(
     ProductType type,
     @NonNull
     BigDecimal price
-) { }
+)implements Request<ProductDTO>, Event { }

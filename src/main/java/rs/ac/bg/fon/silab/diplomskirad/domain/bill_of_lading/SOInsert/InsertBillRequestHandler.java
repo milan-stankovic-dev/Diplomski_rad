@@ -8,7 +8,7 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.bill_of_lading_item.BillOfLadingItem;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.domain.bill_of_lading.BillOfLading;
 import rs.ac.bg.fon.silab.diplomskirad.dto.BillOfLadingDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.BillOfLadingMapper;

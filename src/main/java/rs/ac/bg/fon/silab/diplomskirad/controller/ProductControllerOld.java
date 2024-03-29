@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionSystemException;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.exception.ExistingEntityException;
 import rs.ac.bg.fon.silab.diplomskirad.service.ProductService;
@@ -16,8 +14,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/v1/product")
-public class ProductController {
+@RequestMapping(value = "/api/v1/product-old")
+public class ProductControllerOld {
     private final ProductService service;
 
     @GetMapping("/all")

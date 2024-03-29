@@ -1,12 +1,11 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain.bill_of_lading_item;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 
 @Data
 @NoArgsConstructor

@@ -21,9 +21,9 @@ public class FirmController {
     private final Mediator mediator;
     @GetMapping("/all")
     public ResponseEntity<List<FirmDTO>> getAllFirms() {
-        final DTOListResponse response =
+        final DTOListResponse<FirmDTO> response =
                 this.mediator.dispatch(new EmptyRequest<>());
 
-        return ResponseEntity.ok(response.firmDTOs());
+        return ResponseEntity.ok(response.dtos());
     }
 }

@@ -3,7 +3,7 @@ package rs.ac.bg.fon.silab.diplomskirad.service;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.exception.ExistingEntityException;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
@@ -33,15 +33,6 @@ public class ProductService {
             return productMapper.entityToDTO(repository.save(product));
     }
 
-    private Optional<Product> findProductByID(long id){
-        Optional<Product> foundProduct = repository.findById(id);
-        if(foundProduct.isEmpty()){
-            return Optional.empty();
-        }
-        var product = foundProduct.get();
-        return Optional.of(product);
-    }
-
     public Optional<List<ProductDTO>> getAllProductDTOsWithNameOrSimilar(String name) {
         List<Product> foundProducts = repository.findAllByNameOrSimilar(name);
         if(foundProducts.isEmpty()){
@@ -52,7 +43,7 @@ public class ProductService {
     }
 
     public Optional<ProductDTO> updateProduct(ProductDTO productDTO, long id) {
-        Optional<Product> foundProductOptional = findProductByID(id);
+        Optional<Product> foundProductOptional = repository.findById(id);
         if(foundProductOptional.isEmpty()){
             throw new EntityNotFoundException("There is no such product");
         }

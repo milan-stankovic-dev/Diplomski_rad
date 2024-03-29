@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 
 @Data
 @NoArgsConstructor
