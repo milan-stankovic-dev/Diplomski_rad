@@ -1,8 +1,12 @@
-package rs.ac.bg.fon.silab.diplomskirad.service;
+package rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note.SOInsert;
 
+import io.jkratz.mediator.core.Mediator;
+import io.jkratz.mediator.core.RequestHandler;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import lombok.val;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note.GoodsReceivedNote;
 import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note_item.GoodsReceivedNoteItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
@@ -14,28 +18,33 @@ import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
-@Service
-public class GoodsReceivedNoteService {
+public class InsertNoteRequestHandler
+        implements RequestHandler<GoodsReceivedNoteDTO, GoodsReceivedNoteDTO> {
+
+    private final Mediator mediator;
     private final GoodsReceivedNoteRepository repository;
     private final GoodsReceivedNoteMapper noteMapper;
     private final ProductRepository productRepository;
-    public GoodsReceivedNoteDTO insertNote(
+
+    private GoodsReceivedNoteDTO insertNote(
             GoodsReceivedNoteDTO noteDTO) {
-        var note = noteMapper.dTOtoEntity(noteDTO);
+        val note = noteMapper.dTOtoEntity(noteDTO);
         noteItemValidator(note);
         noteTotalPriceValidator(note);
         increaseItemStock(note);
-        var savedNote = repository.save(note);
+        val savedNote = repository.save(note);
 
         return noteMapper.entityToDTO(savedNote);
     }
+
     private void noteItemValidator(GoodsReceivedNote note) {
         if(note == null){
             throw new IllegalArgumentException("Your note must not be empty");
         }
         var items = note.getItems();
-        if(items == null || items.size() == 0){
+        if(items == null || items.isEmpty()){
             throw new IllegalStateException("Your goods received note has " +
                     "no items.");
         }
@@ -81,7 +90,8 @@ public class GoodsReceivedNoteService {
         return productFromDBopt.get();
     }
 
-    public List<GoodsReceivedNoteDTO> getAllNotes() {
-        return noteMapper.listOfEntitiesToListOfDTOs(repository.findAll());
+    @Override
+    public GoodsReceivedNoteDTO handle(@NotNull GoodsReceivedNoteDTO goodsReceivedNoteDTO) {
+        return null;
     }
 }

@@ -1,12 +1,9 @@
-package rs.ac.bg.fon.silab.diplomskirad.controller;
+package rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.bg.fon.silab.diplomskirad.domain.GoodsReceivedNote;
 import rs.ac.bg.fon.silab.diplomskirad.dto.GoodsReceivedNoteDTO;
 import rs.ac.bg.fon.silab.diplomskirad.service.GoodsReceivedNoteService;
 
@@ -20,7 +17,7 @@ public class GoodsReceivedNoteController {
 
     @PostMapping
     public ResponseEntity<Object> insertNote(
-            @RequestBody GoodsReceivedNoteDTO noteDTO){
+            @RequestBody GoodsReceivedNoteDTO noteDTO) {
         try{
             return ResponseEntity.ok(service.insertNote(noteDTO));
         }catch (Exception ex){
