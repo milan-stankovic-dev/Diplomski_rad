@@ -4,7 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import rs.ac.bg.fon.silab.diplomskirad.domain.GoodsReceivedNote;
-import rs.ac.bg.fon.silab.diplomskirad.domain.GoodsReceivedNoteItem;
+import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note_item.GoodsReceivedNoteItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.GoodsReceivedNoteDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.GoodsReceivedNoteMapper;

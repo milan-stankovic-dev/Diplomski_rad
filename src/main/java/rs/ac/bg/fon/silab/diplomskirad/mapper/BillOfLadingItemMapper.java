@@ -2,9 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.BillOfLadingItem;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
-import rs.ac.bg.fon.silab.diplomskirad.dto.BillOfLadingDTO;
+import rs.ac.bg.fon.silab.diplomskirad.domain.bill_of_lading_item.BillOfLadingItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.BillOfLadingItemDTO;
 
 @Component

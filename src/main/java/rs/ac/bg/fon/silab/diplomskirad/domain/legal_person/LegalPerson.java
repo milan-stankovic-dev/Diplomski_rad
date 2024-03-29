@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.legal_person;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;

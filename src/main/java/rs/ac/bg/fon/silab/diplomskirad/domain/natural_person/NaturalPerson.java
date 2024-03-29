@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.natural_person;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

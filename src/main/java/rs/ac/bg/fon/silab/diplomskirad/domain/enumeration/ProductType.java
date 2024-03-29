@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain;
+package rs.ac.bg.fon.silab.diplomskirad.domain.enumeration;
 
 public enum ProductType {
     Cooking, Cleaning, Tool, Fruit, Vegatable,

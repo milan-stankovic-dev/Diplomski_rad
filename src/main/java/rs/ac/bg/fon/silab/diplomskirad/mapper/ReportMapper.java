@@ -3,9 +3,8 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.Report;
-import rs.ac.bg.fon.silab.diplomskirad.domain.ReportItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
-import rs.ac.bg.fon.silab.diplomskirad.dto.ReportItemDTO;
+
 @Component
 @RequiredArgsConstructor
 public non-sealed class ReportMapper

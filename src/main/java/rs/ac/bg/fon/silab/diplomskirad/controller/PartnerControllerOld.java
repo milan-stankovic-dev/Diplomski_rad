@@ -12,8 +12,8 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value = "/api/v1/partner")
-public class PartnerController {
+@RequestMapping(value = "/api/v1/partner-old")
+public class PartnerControllerOld {
     private final PartnerService service;
 
     @GetMapping("/all")

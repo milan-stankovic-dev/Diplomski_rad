@@ -2,7 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.diplomskirad.domain.LegalPerson;
+import rs.ac.bg.fon.silab.diplomskirad.domain.legal_person.LegalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.LegalPersonMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.LegalPersonRepository;

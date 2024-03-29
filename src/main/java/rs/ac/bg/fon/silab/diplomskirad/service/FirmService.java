@@ -1,9 +1,8 @@
 package rs.ac.bg.fon.silab.diplomskirad.service;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.stereotype.Service;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Firm;
+import rs.ac.bg.fon.silab.diplomskirad.domain.firm.Firm;
 import rs.ac.bg.fon.silab.diplomskirad.dto.FirmDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.FirmMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.FirmRepository;

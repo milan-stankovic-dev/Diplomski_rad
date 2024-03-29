@@ -1,19 +1,15 @@
 package rs.ac.bg.fon.silab.diplomskirad.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.PastOrPresent;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import rs.ac.bg.fon.silab.diplomskirad.domain.report_item.ReportItem;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Data
