@@ -1,8 +1,8 @@
-package rs.ac.bg.fon.silab.diplomskirad.userUtils;
+package rs.ac.bg.fon.silab.diplomskirad.dto.user;
 
 import io.jkratz.mediator.core.Command;
-import io.jkratz.mediator.core.Event;
 import io.jkratz.mediator.core.Request;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.AuthenticationResponse;
 
 public record RegisterRequest(
          String firstname,

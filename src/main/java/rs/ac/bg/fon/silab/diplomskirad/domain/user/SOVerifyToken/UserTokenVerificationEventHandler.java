@@ -4,7 +4,7 @@ import io.jkratz.mediator.core.EventHandler;
 import lombok.extern.java.Log;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenVerificationResponse;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.TokenVerificationResponse;
 
 @Component
 @Log

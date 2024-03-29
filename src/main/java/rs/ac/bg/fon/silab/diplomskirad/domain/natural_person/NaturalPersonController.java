@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
-import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.NaturalPersonDTO;
-import rs.ac.bg.fon.silab.diplomskirad.service.NaturalPersonService;
 
 import java.util.List;
 

@@ -3,7 +3,6 @@ package rs.ac.bg.fon.silab.diplomskirad.domain.user.SOVerifyToken;
 import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.RequestHandler;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,8 +12,7 @@ import rs.ac.bg.fon.silab.diplomskirad.domain.TokenVerificationRequestWithToken;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.TokenValidationRequestMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.TokenValidationWithTokenMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.UserRepository;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenVerificationRequest;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenVerificationResponse;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.TokenVerificationResponse;
 
 @Component
 @RequiredArgsConstructor

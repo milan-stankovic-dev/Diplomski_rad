@@ -1,13 +1,14 @@
-package rs.ac.bg.fon.silab.diplomskirad.service;
+package rs.ac.bg.fon.silab.diplomskirad.util;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 @RequiredArgsConstructor
-public class EmailService {
+public class EmailUtil {
     private final JavaMailSender javaMailSender;
 
     public void sendEmail(String to, String subject, String text){

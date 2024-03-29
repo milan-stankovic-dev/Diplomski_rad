@@ -7,10 +7,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rs.ac.bg.fon.silab.diplomskirad.domain.TokenVerificationRequestWithToken;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.RegisterRequestUserMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.TokenValidationWithTokenMapper;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.*;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.AuthenticationRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.RegisterRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.TokenVerificationRequest;
 
 @RequiredArgsConstructor
 @RestController

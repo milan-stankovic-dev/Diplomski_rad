@@ -5,7 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.enumeration.Role;
 import rs.ac.bg.fon.silab.diplomskirad.domain.user.User;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.RegisterRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.RegisterRequest;
 
 @Component
 @RequiredArgsConstructor

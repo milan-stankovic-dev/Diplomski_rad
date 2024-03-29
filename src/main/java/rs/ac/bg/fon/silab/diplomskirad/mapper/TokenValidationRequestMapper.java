@@ -2,7 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.user.User;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenVerificationRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.TokenVerificationRequest;
 
 @Component
 public non-sealed class TokenValidationRequestMapper implements DtoDomainMapper<TokenVerificationRequest, User> {

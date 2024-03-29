@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.exception.UserAlreadyRegisteredException;
 import rs.ac.bg.fon.silab.diplomskirad.repository.UserRepository;
-import rs.ac.bg.fon.silab.diplomskirad.service.EmailService;
+import rs.ac.bg.fon.silab.diplomskirad.util.EmailUtil;
 
 import java.util.Optional;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserUtil {
     private final UserRepository repository;
-    private final EmailService emailService;
+    private final EmailUtil emailUtil;
 
     public void validateUsernameNotTaken(String username)
             throws UserAlreadyRegisteredException {
@@ -44,7 +44,7 @@ public class UserUtil {
         final String emailBody = "Thank you for registering to our service! " +
                 "One more step is required. Please follow the link to properly " +
                 "sign up to our service.\n\n\n" + verificationLink;
-        emailService.sendEmail(user.getEmail(), "Email verification", emailBody);
+        emailUtil.sendEmail(user.getEmail(), "Email verification", emailBody);
     }
 
 }

@@ -6,9 +6,7 @@ import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
-import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
-import rs.ac.bg.fon.silab.diplomskirad.service.ReportService;
 
 import java.util.List;
 
@@ -17,7 +15,6 @@ import java.util.List;
 @RequestMapping(value = "/api/v1/report")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ReportController {
-    private final ReportService service;
     private final Mediator mediator;
 
     @PostMapping

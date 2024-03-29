@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.config.JwtService;
 import rs.ac.bg.fon.silab.diplomskirad.exception.UserNotVerifiedException;
 import rs.ac.bg.fon.silab.diplomskirad.repository.UserRepository;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.AuthenticationRequest;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.AuthenticationResponse;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.AuthenticationRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.AuthenticationResponse;
 
 
 @Component

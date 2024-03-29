@@ -2,7 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.TokenVerificationRequestWithToken;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.TokenVerificationRequest;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.TokenVerificationRequest;
 
 @Component
 public class TokenValidationWithTokenMapper {
