@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.product;
+package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product;
 
 import io.jkratz.mediator.core.Mediator;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DeleteCommand;
-import rs.ac.bg.fon.silab.diplomskirad.domain.EmptyRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import java.util.List;
 
@@ -57,3 +56,4 @@ public class ProductController {
     }
 
 }
+

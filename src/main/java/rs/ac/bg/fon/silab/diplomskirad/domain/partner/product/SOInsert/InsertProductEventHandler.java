@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.product.SOInsert;
+package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.SOInsert;
 
 import io.jkratz.mediator.core.EventHandler;
 import lombok.extern.java.Log;

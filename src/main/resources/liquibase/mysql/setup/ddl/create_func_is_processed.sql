@@ -5,7 +5,7 @@ declare
     is_empty BOOLEAN;
 begin
     select distinct processed
-    from diplomski_rad.tbl_order_queue
+    from tbl_order_queue
     where supplier_id = supplier_id_param
     into invoice_entries;
 

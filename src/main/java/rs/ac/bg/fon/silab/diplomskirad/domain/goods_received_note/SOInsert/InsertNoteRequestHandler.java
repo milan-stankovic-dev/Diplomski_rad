@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note.GoodsReceivedNote;
-import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.GoodsReceivedNoteDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.GoodsReceivedNoteMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.GoodsReceivedNoteRepository;

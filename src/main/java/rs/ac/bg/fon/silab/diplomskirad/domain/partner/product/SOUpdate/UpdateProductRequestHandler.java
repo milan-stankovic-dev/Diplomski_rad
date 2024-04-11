@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.product.SOUpdate;
+package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.SOUpdate;
 
 import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.RequestHandler;
@@ -8,13 +8,10 @@ import lombok.Setter;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
-import rs.ac.bg.fon.silab.diplomskirad.domain.product.UpdateProductRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.UpdateProductRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
-
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

@@ -6,8 +6,8 @@ DECLARE
 BEGIN
     FOR supplier_id IN (SELECT * FROM get_order_supplier_ids())
     LOOP
-        xml_result := diplomski_rad.generate_invoice(supplier_id);
-        PERFORM diplomski_rad.insert_invoice(xml_result, supplier_id);
+        xml_result := generate_invoice(supplier_id);
+        PERFORM insert_invoice(xml_result, supplier_id);
     END LOOP;
 
     RETURN NEW;

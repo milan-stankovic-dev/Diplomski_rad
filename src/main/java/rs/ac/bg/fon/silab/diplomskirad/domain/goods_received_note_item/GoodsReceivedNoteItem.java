@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.BusinessDocumentItem;
-import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.Product;
 
 @Data
 @NoArgsConstructor

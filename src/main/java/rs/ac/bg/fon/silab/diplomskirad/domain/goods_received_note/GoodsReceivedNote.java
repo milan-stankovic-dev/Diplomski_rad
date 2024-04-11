@@ -6,14 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.BusinessDocument;
-import rs.ac.bg.fon.silab.diplomskirad.domain.abstraction.BusinessDocumentItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note_item.GoodsReceivedNoteItem;
 import rs.ac.bg.fon.silab.diplomskirad.domain.partner.Partner;
-import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Data

@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.product.SODelete;
+package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.SODelete;
 
 import io.jkratz.mediator.core.CommandHandler;
 import lombok.RequiredArgsConstructor;
