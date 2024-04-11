@@ -1,7 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.LegalPerson;
+import rs.ac.bg.fon.silab.diplomskirad.domain.legal_person.LegalPerson;
 import rs.ac.bg.fon.silab.diplomskirad.dto.LegalPersonDTO;
 @Component
 public non-sealed class LegalPersonMapper implements DtoDomainMapper<LegalPersonDTO, LegalPerson> {

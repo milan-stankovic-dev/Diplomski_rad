@@ -2,7 +2,7 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.GoodsReceivedNoteItem;
+import rs.ac.bg.fon.silab.diplomskirad.domain.goods_received_note_item.GoodsReceivedNoteItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.GoodsReceivedNoteItemDTO;
 
 @Component

@@ -3,9 +3,9 @@ package rs.ac.bg.fon.silab.diplomskirad.mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Role;
-import rs.ac.bg.fon.silab.diplomskirad.domain.User;
-import rs.ac.bg.fon.silab.diplomskirad.userUtils.AuthenticationRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.enumeration.Role;
+import rs.ac.bg.fon.silab.diplomskirad.domain.user.User;
+import rs.ac.bg.fon.silab.diplomskirad.dto.user.AuthenticationRequest;
 
 @Component
 @RequiredArgsConstructor

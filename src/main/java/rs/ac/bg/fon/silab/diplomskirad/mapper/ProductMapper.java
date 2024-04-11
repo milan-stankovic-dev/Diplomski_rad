@@ -1,12 +1,14 @@
 package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
-import rs.ac.bg.fon.silab.diplomskirad.mapper.DtoDomainMapper;
-@Component
-public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Product> {
 
+@Component
+@RequiredArgsConstructor
+public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Product> {
+    private final PartnerMapper partnerMapper;
     @Override
     public ProductDTO entityToDTO(Product product) {
         var productDto = new ProductDTO(
@@ -15,8 +17,12 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 product.getWeight(),
                 product.isFragile(),
                 product.getCurrentStock(),
+                product.getMinimalStock(),
+                product.getOrderAmount(),
                 product.getType(),
-                product.getPrice()
+                product.getPrice(),
+                product.getSupplier() == null? null :
+                partnerMapper.entityToDTO(product.getSupplier())
         );
 
         return productDto;
@@ -30,11 +36,12 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 productDTO.weight(),
                 productDTO.fragile(),
                 productDTO.amount(),
-                0,
-                1,
+                productDTO.minimalStock(),
+                productDTO.orderAmount(),
                 productDTO.type(),
                 productDTO.price(),
-                null
+                productDTO.supplier() == null? null :
+                partnerMapper.dTOtoEntity(productDTO.supplier())
         );
 
         return product;

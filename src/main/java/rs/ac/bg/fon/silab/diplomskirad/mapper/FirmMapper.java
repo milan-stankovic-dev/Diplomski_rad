@@ -1,7 +1,7 @@
 package rs.ac.bg.fon.silab.diplomskirad.mapper;
 
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.Firm;
+import rs.ac.bg.fon.silab.diplomskirad.domain.firm.Firm;
 import rs.ac.bg.fon.silab.diplomskirad.dto.FirmDTO;
 @Component
 public non-sealed class FirmMapper implements DtoDomainMapper<FirmDTO, Firm> {

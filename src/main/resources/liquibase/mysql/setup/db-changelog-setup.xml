@@ -27,10 +27,10 @@
             <sqlFile path="ddl/create_tbl_xml_schema.sql"
                      relativeToChangelogFile="true"/>
         </changeSet>
-        <changeSet id="populate_tbl_xml_schema" author="milan s.">
-            <sqlFile path="dml/populate_tbl_xml_schema.sql"
-                     relativeToChangelogFile="true"/>
-        </changeSet>
+<!--        <changeSet id="populate_tbl_xml_schema" author="milan s.">-->
+<!--            <sqlFile path="dml/populate_tbl_xml_schema.sql"-->
+<!--                     relativeToChangelogFile="true"/>-->
+<!--        </changeSet>-->
         <changeSet id="create_tbl_order_queue" author="milan s.">
             <sqlFile path="ddl/create_tbl_order_queue.sql"
                     relativeToChangelogFile="true" splitStatements="false"/>
