@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.SOInsert;
+package rs.ac.bg.fon.silab.diplomskirad.domain.product.SOInsert;
 
 import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.RequestHandler;
@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.exception.ExistingEntityException;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;

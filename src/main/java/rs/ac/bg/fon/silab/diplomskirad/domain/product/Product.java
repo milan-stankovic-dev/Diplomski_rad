@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product;
+package rs.ac.bg.fon.silab.diplomskirad.domain.product;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

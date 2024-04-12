@@ -1,4 +1,4 @@
-package rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.SOGetAll;
+package rs.ac.bg.fon.silab.diplomskirad.domain.product.SOGetAll;
 
 import io.jkratz.mediator.core.Mediator;
 import io.jkratz.mediator.core.RequestHandler;
@@ -7,7 +7,7 @@ import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.diplomskirad.domain.DTOListResponse;
-import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.GetProductsRequest;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.GetProductsRequest;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ProductDTO;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.PartnerMapper;
 import rs.ac.bg.fon.silab.diplomskirad.mapper.ProductMapper;

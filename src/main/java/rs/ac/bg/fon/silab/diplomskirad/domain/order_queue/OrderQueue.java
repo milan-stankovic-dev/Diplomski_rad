@@ -5,11 +5,8 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnTransformer;
 import rs.ac.bg.fon.silab.diplomskirad.domain.partner.Partner;
-import rs.ac.bg.fon.silab.diplomskirad.domain.xml_schema.XmlSchema;
 
-import java.sql.SQLXML;
 import java.time.LocalDate;
 
 @Entity

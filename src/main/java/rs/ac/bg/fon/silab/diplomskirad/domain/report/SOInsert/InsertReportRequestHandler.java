@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
-import rs.ac.bg.fon.silab.diplomskirad.domain.partner.product.Product;
+import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 import rs.ac.bg.fon.silab.diplomskirad.domain.report.Report;
 import rs.ac.bg.fon.silab.diplomskirad.domain.report_item.ReportItem;
 import rs.ac.bg.fon.silab.diplomskirad.dto.ReportDTO;
