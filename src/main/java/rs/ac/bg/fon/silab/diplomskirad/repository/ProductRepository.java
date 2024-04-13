@@ -1,9 +1,11 @@
 package rs.ac.bg.fon.silab.diplomskirad.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import rs.ac.bg.fon.silab.diplomskirad.domain.product.Product;
 
 import java.util.List;
@@ -15,4 +17,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 
     List<Product> findByProductName(String productName);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Product p SET p.currentStock = p.currentStock - :stock WHERE p.productName = :name")
+    void decreaseStockByName(String name, Integer stock);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE Product p SET p.currentStock = p.currentStock + :stock WHERE p.productName = :name")
+    void increaseStockByName(String name, Integer stock);
 }

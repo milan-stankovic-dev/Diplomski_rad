@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 import rs.ac.bg.fon.silab.diplomskirad.domain.enumeration.ProductType;
 import rs.ac.bg.fon.silab.diplomskirad.domain.partner.Partner;
 
@@ -24,6 +25,7 @@ public class Product {
     private long id;
 
     @NotEmpty(message = "You must input a product name.")
+    @NaturalId
     private String productName;
     private double weight;
     private boolean fragile;
