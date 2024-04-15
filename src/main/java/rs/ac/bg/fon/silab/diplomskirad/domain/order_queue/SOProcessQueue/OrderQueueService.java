@@ -31,7 +31,7 @@ public class OrderQueueService {
     private final OrderQueueRepository repository;
     private final RestTemplate restTemplate;
     private final ProductRepository productRepository;
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 60000)
     @Transactional
     public void processInvoices() throws ParserConfigurationException,
             IOException, SAXException {
@@ -52,7 +52,7 @@ public class OrderQueueService {
             processSingleRequest(request);
         }
 
-        log.info("PROCESSED...");
+        log.info("PROCESSED.");
     }
 
     @Transactional
@@ -90,19 +90,22 @@ public class OrderQueueService {
             throw new IllegalStateException("Server was not able to send products.");
         }
 
-        setInvoiceToProcessed(body.id());
         val parser = XMLParser.getInstance();
         val backLog = parser.parseAllNamed(body.XMLContents(), "item");
         adjustAllStocks(backLog);
+        setInvoiceToProcessed(body.id());
     }
     @Transactional
     private void setInvoiceToProcessed(Long id) {
         repository.setProcessedByIdTo(id, true);
+        log.info("ID WAS " + id);
+        log.info("UPDATED INVOICE TO PROCESSED IN DB.");
     }
 
     @Transactional
     private void adjustAllStocks(Map<String, Integer> backlog) {
         backlog.forEach(productRepository::increaseStockByName);
+        log.info("ADJUSTED ALL STOCKS.");
     }
 
 }
