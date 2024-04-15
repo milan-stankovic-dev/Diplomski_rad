@@ -109,19 +109,18 @@ public class OrderQueueService {
 
     private void validateOrderResponse(OrderResponse response) {
         if(response == null) {
-            log.info("Server response malformed.");
+            log.warning("Server response malformed.");
             throw new IllegalStateException("Malformed server response.");
         }
 
         if(!response.successful()) {
-            log.info("Unsuccessful order!");
+            log.warning("Unsuccessful order!");
             throw new IllegalStateException("Server was not able to send products.");
         }
     }
     @Transactional
     private void setInvoiceToProcessed(Long id) {
         repository.setProcessedByIdTo(id, true);
-        log.info("ID WAS " + id);
         log.info("UPDATED INVOICE TO PROCESSED IN DB.");
     }
 
