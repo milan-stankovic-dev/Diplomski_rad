@@ -4,9 +4,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.val;
-import org.example.XMLParser;
+import org.example.constants.XMLConstants;
 import org.example.dto.OrderRequest;
 import org.example.dto.OrderResponse;
+import org.example.util.XMLParser;
+import org.example.validator.XMLValidator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,6 @@ import rs.ac.bg.fon.silab.diplomskirad.repository.ProductRepository;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +33,8 @@ public class OrderQueueService {
     private final ProductRepository productRepository;
     @Scheduled(fixedRate = 60000)
     @Transactional
-    public void processInvoices() throws ParserConfigurationException,
-            IOException, SAXException {
+    public void processInvoices()
+            throws ParserConfigurationException, IOException, SAXException {
 
         log.info("STARTING TO PROCESS...");
         final List<OrderQueue> invoices = repository.findByProcessedFalse();
@@ -43,6 +43,9 @@ public class OrderQueueService {
             log.info("NO INVOICES FOUND. SKIPPING.");
             return;
         }
+
+        validateAllXMLFully(orderQueuesToXMLs(invoices),
+                XMLConstants.invoiceSchema);
 
         log.info("INVOICES FOUND: " + invoices);
         final List<OrderRequest> requests = dbEntriesToRequests(invoices);
@@ -53,6 +56,22 @@ public class OrderQueueService {
         }
 
         log.info("PROCESSED.");
+    }
+
+    private void validateAllXMLFully(List<String> xmlDocs, String xmlSchema)
+            throws ParserConfigurationException, IOException, SAXException {
+
+        val validator = XMLValidator.getInstance();
+
+        for(val xml : xmlDocs) {
+            validator.validateXMLFully(xml,xmlSchema);
+        }
+    }
+
+    private List<String> orderQueuesToXMLs(List<OrderQueue> queues) {
+        return queues.stream()
+                .map(OrderQueue::getXmlData)
+                .toList();
     }
 
     @Transactional
@@ -80,20 +99,24 @@ public class OrderQueueService {
 
         val body = serverResponse.getBody();
 
-        if(body == null) {
-            log.info("Server response malformed.");
-            throw new IllegalStateException("Malformed server response.");
-        }
-
-        if(!body.successful()) {
-            log.info("Unsuccessful order!");
-            throw new IllegalStateException("Server was not able to send products.");
-        }
+        validateOrderResponse(body);
 
         val parser = XMLParser.getInstance();
         val backLog = parser.parseAllNamed(body.XMLContents(), "item");
         adjustAllStocks(backLog);
         setInvoiceToProcessed(body.id());
+    }
+
+    private void validateOrderResponse(OrderResponse response) {
+        if(response == null) {
+            log.info("Server response malformed.");
+            throw new IllegalStateException("Malformed server response.");
+        }
+
+        if(!response.successful()) {
+            log.info("Unsuccessful order!");
+            throw new IllegalStateException("Server was not able to send products.");
+        }
     }
     @Transactional
     private void setInvoiceToProcessed(Long id) {
