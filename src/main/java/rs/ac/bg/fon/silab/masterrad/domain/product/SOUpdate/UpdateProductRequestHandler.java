@@ -21,8 +21,7 @@ public class UpdateProductRequestHandler
     private final Mediator mediator;
     private final ProductRepository repository;
     private final ProductMapper productMapper;
-    @Setter
-    private Long id;
+
     private ProductDTO updateProduct(ProductDTO productDTO, long id) {
         val foundProduct = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("There is no such product"));
@@ -36,7 +35,7 @@ public class UpdateProductRequestHandler
     @Override
     public ProductDTO handle(@NotNull UpdateProductRequest request) {
         val updatedProduct =
-                updateProduct(request.productDTO(), this.id);
+                updateProduct(request.productDTO(), request.id());
 
         this.mediator.emit(updatedProduct);
         return updatedProduct;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import rs.ac.bg.fon.silab.masterrad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.masterrad.domain.DeleteCommand;
 import rs.ac.bg.fon.silab.masterrad.dto.ProductDTO;
+import rs.ac.bg.fon.silab.masterrad.dto.ProductFullDTO;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ import java.util.List;
 public class ProductController {
     private final Mediator mediator;
     @GetMapping("/all")
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        final DTOListResponse<ProductDTO> productsResponse =
+    public ResponseEntity<List<ProductFullDTO>> getAllProducts() {
+        final DTOListResponse<ProductFullDTO> productsResponse =
             this.mediator.dispatch(new GetProductsRequest());
 
         return ResponseEntity.ok(productsResponse.dtos());

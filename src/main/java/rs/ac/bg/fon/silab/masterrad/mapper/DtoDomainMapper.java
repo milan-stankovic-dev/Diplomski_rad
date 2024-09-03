@@ -7,12 +7,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public sealed interface DtoDomainMapper<DTO, ENTITY> permits AuthRequestUserMapper, BillOfLadingItemMapper,
-        BillOfLadingMapper, BuyerMapper, FirmMapper,
-        GoodsReceivedNoteItemMapper, GoodsReceivedNoteMapper,
-        LegalPersonMapper, NaturalPersonMapper, PartnerMapper,
-        ProductMapper, RegisterRequestUserMapper, ReportItemMapper,
-        ReportMapper, TokenValidationRequestMapper {
+public sealed interface DtoDomainMapper<DTO, ENTITY> permits AuthRequestUserMapper, BillOfLadingItemMapper, BillOfLadingMapper, BuyerMapper, FirmMapper, GoodsReceivedNoteItemMapper, GoodsReceivedNoteMapper, LegalPersonMapper, NaturalPersonMapper, PartnerMapper, ProductFullMapper, ProductMapper, RegisterRequestUserMapper, ReportItemMapper, ReportMapper, TokenValidationRequestMapper {
     DTO entityToDTO(ENTITY entity);
     ENTITY dTOtoEntity(DTO dto);
 

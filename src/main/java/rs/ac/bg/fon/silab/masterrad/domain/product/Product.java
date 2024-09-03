@@ -1,5 +1,6 @@
 package rs.ac.bg.fon.silab.masterrad.domain.product;
 
+import com.fasterxml.jackson.databind.BeanProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,7 @@ import rs.ac.bg.fon.silab.masterrad.domain.enumeration.ProductType;
 import rs.ac.bg.fon.silab.masterrad.domain.partner.Partner;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Data
 @EqualsAndHashCode(exclude = {"price", "currentStock",
@@ -25,9 +27,10 @@ public class Product {
     private long id;
 
     @NotEmpty(message = "You must input a product name.")
-    @NaturalId
     private String productName;
+
     private double weight;
+
     private boolean fragile;
 
     @Min(value = 0, message = "You may not have less than 0 products.")
@@ -49,6 +52,10 @@ public class Product {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "supplier_id")
     private Partner supplier;
+
+    @NaturalId
+    @Column(unique = true, updatable = false, nullable = false)
+    private UUID code = UUID.randomUUID();
 
     public void decreaseStockBy(int amountSold){
         this.currentStock -= amountSold;

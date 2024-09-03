@@ -5,15 +5,16 @@ import lombok.val;
 import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.masterrad.domain.partner.Partner;
 import rs.ac.bg.fon.silab.masterrad.domain.product.Product;
-import rs.ac.bg.fon.silab.masterrad.dto.ProductDTO;
-
-import java.util.UUID;
+import rs.ac.bg.fon.silab.masterrad.dto.ProductFullDTO;
 
 @Component
-public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Product> {
+@RequiredArgsConstructor
+public final class ProductFullMapper implements DtoDomainMapper<ProductFullDTO, Product> {
+    private final PartnerMapper partnerMapper;
+
     @Override
-    public ProductDTO entityToDTO(Product product) {
-        val productDto = new ProductDTO(
+    public ProductFullDTO entityToDTO(Product product) {
+        val productDto = new ProductFullDTO(
                 product.getId(),
                 product.getProductName(),
                 product.getWeight(),
@@ -23,15 +24,14 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 product.getOrderAmount(),
                 product.getType(),
                 product.getPrice(),
-                product.getSupplier() == null? 0 :
-                product.getSupplier().getId(),
+                product.getSupplier() == null ? null :
+                partnerMapper.entityToDTO(product.getSupplier()),
                 product.getCode());
-
         return productDto;
     }
 
     @Override
-    public Product dTOtoEntity(ProductDTO productDTO) {
+    public Product dTOtoEntity(ProductFullDTO productDTO) {
         val product = new Product(
                 productDTO.id(),
                 productDTO.productName(),
@@ -44,10 +44,9 @@ public non-sealed class ProductMapper implements DtoDomainMapper<ProductDTO, Pro
                 productDTO.price(),
                 Partner
                         .builder()
-                        .id(productDTO.supplierId())
+                        .id(productDTO.id())
                         .build(),
-                productDTO.code() == null ? UUID.randomUUID() :
-                        productDTO.code());
+                productDTO.code());
 
         return product;
     }

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import rs.ac.bg.fon.silab.masterrad.domain.DTOListResponse;
 import rs.ac.bg.fon.silab.masterrad.domain.product.GetProductsRequest;
 import rs.ac.bg.fon.silab.masterrad.dto.ProductDTO;
+import rs.ac.bg.fon.silab.masterrad.dto.ProductFullDTO;
 import rs.ac.bg.fon.silab.masterrad.mapper.PartnerMapper;
+import rs.ac.bg.fon.silab.masterrad.mapper.ProductFullMapper;
 import rs.ac.bg.fon.silab.masterrad.mapper.ProductMapper;
 import rs.ac.bg.fon.silab.masterrad.repository.ProductRepository;
 
@@ -19,23 +21,26 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GetAllProductsRequestHandler
         implements RequestHandler<GetProductsRequest,
-        DTOListResponse<ProductDTO>> {
+        DTOListResponse<ProductFullDTO>> {
 
     private final Mediator mediator;
     private final ProductRepository repository;
+    private final ProductFullMapper mapper;
 
-    private List<ProductDTO> getAllProductDTOs() {
+    private List<ProductFullDTO> getAllProductDTOs() {
         val products = repository.findAll();
-        return new ProductMapper(new PartnerMapper()).listOfEntitiesToListOfDTOs(products);
+        return mapper.listOfEntitiesToListOfDTOs(products);
     }
     @Override
-    public DTOListResponse<ProductDTO> handle(@NotNull GetProductsRequest
+    public DTOListResponse<ProductFullDTO> handle(@NotNull GetProductsRequest
                                                           getProductsRequest) {
         val foundProductDTOs =
                 getAllProductDTOs();
         val responseProducts =
-                new DTOListResponse<ProductDTO>(foundProductDTOs);
+                new DTOListResponse<>(foundProductDTOs);
 
+        System.out.println("****** FOUND PRODUCTS ******");
+        foundProductDTOs.forEach(System.out::println);
         this.mediator.emit(responseProducts);
         return responseProducts;
     }

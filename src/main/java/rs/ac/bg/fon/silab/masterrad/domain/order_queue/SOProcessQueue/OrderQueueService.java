@@ -3,6 +3,7 @@ package rs.ac.bg.fon.silab.masterrad.domain.order_queue.SOProcessQueue;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.example.constants.XMLConstants;
 import org.example.dto.OrderRequest;
@@ -21,12 +22,13 @@ import rs.ac.bg.fon.silab.masterrad.repository.ProductRepository;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-@Log
+@Slf4j
 public class OrderQueueService {
     private final OrderQueueRepository repository;
     private final RestTemplate restTemplate;
@@ -109,15 +111,17 @@ public class OrderQueueService {
 
     private void validateOrderResponse(OrderResponse response) {
         if(response == null) {
-            log.warning("Server response malformed.");
+            log.warn("Server response malformed.");
             throw new IllegalStateException("Malformed server response.");
         }
 
         if(!response.successful()) {
-            log.warning("Unsuccessful order!");
+            log.warn("Unsuccessful order!");
+            log.warn("Supplier response: {}", response);
             throw new IllegalStateException("Server was not able to send products.");
         }
     }
+
     @Transactional
     private void setInvoiceToProcessed(Long id) {
         repository.setProcessedByIdTo(id, true);
