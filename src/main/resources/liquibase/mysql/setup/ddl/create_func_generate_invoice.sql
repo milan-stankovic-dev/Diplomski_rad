@@ -37,7 +37,7 @@ BEGIN
         XMLAGG(
             XMLELEMENT(
                 NAME "item",
-                XMLFOREST(order_amount, product_name)
+                XMLFOREST(order_amount, product_name, code)
                )
            )
        )

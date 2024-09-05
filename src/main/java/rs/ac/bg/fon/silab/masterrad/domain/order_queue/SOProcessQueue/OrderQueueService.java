@@ -2,10 +2,8 @@ package rs.ac.bg.fon.silab.masterrad.domain.order_queue.SOProcessQueue;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import org.example.constants.XMLConstants;
 import org.example.dto.OrderRequest;
 import org.example.dto.OrderResponse;
 import org.example.util.XMLParser;
@@ -22,9 +20,11 @@ import rs.ac.bg.fon.silab.masterrad.repository.ProductRepository;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import static org.example.constants.XMLConstants.INVOICE_SCHEMA;
 
 @Service
 @RequiredArgsConstructor
@@ -33,6 +33,9 @@ public class OrderQueueService {
     private final OrderQueueRepository repository;
     private final RestTemplate restTemplate;
     private final ProductRepository productRepository;
+    private final XMLValidator validator;
+    private final XMLParser parser;
+
     @Scheduled(fixedRate = 60000)
     @Transactional
     public void processInvoices()
@@ -46,8 +49,7 @@ public class OrderQueueService {
             return;
         }
 
-        validateAllXMLFully(orderQueuesToXMLs(invoices),
-                XMLConstants.invoiceSchema);
+        validateAllXMLFully(orderQueuesToXMLs(invoices), INVOICE_SCHEMA);
 
         log.info("INVOICES FOUND: " + invoices);
         final List<OrderRequest> requests = dbEntriesToRequests(invoices);
@@ -63,11 +65,7 @@ public class OrderQueueService {
     private void validateAllXMLFully(List<String> xmlDocs, String xmlSchema)
             throws ParserConfigurationException, IOException, SAXException {
 
-        val validator = XMLValidator.getInstance();
-
-        for(val xml : xmlDocs) {
-            validator.validateXMLFully(xml,xmlSchema);
-        }
+        for(val xml : xmlDocs) { validator.validateXMLFully(xml,xmlSchema); }
     }
 
     private List<String> orderQueuesToXMLs(List<OrderQueue> queues) {
@@ -103,8 +101,7 @@ public class OrderQueueService {
 
         validateOrderResponse(body);
 
-        val parser = XMLParser.getInstance();
-        val backLog = parser.parseAllNamed(body.XMLContents(), "item");
+        val backLog = parser.parseAllItems(body.XMLContents());
         adjustAllStocks(backLog);
         setInvoiceToProcessed(body.id());
     }
@@ -118,6 +115,7 @@ public class OrderQueueService {
         if(!response.successful()) {
             log.warn("Unsuccessful order!");
             log.warn("Supplier response: {}", response);
+
             throw new IllegalStateException("Server was not able to send products.");
         }
     }
@@ -129,8 +127,8 @@ public class OrderQueueService {
     }
 
     @Transactional
-    private void adjustAllStocks(Map<String, Integer> backlog) {
-        backlog.forEach(productRepository::increaseStockByName);
+    private void adjustAllStocks(Map<UUID, Integer> backlog) {
+        backlog.forEach(productRepository::increaseStockByCode);
         log.info("ADJUSTED ALL STOCKS.");
     }
 

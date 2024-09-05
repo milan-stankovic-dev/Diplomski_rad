@@ -17,7 +17,7 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"rs.ac.bg.fon.silab.masterrad", "org.example"})
 @RequiredArgsConstructor
 @EnableScheduling
 //@ComponentScan("org.example.parser")
