@@ -1,0 +1,63 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <property name="defaultSchemaName" value="public"/>
+
+    <changeSet id="create_partner" author="milan s.">
+        <sqlFile path="ddl/create_partner.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_app_user" author="milan s.">
+        <sqlFile path="ddl/create_app_user.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_product" author="milan s.">
+        <sqlFile path="ddl/create_product.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_buyer" author="milan s.">
+        <sqlFile path="ddl/create_buyer.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_natural_person" author="milan s.">
+        <sqlFile path="ddl/create_natural_person.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_legal_person" author="milan s.">
+        <sqlFile path="ddl/create_legal_person.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_note_item" author="milan s.">
+        <sqlFile path="ddl/create_note_item.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_bill_item" author="milan s.">
+        <sqlFile path="ddl/create_bill_item.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_report_item" author="milan s.">
+        <sqlFile path="ddl/create_report_item.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_note" author="milan s.">
+        <sqlFile path="ddl/create_note.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_bill" author="milan s.">
+        <sqlFile path="ddl/create_bill.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_report" author="milan s.">
+        <sqlFile path="ddl/create_report.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_order_queue" author="milan s.">
+        <sqlFile path="ddl/create_order_queue.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+    <changeSet id="create_firm" author="milan s.">
+        <sqlFile path="ddl/create_firm.sql"
+                 relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>

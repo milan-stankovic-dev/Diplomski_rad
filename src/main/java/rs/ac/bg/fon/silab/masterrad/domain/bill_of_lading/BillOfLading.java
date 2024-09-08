@@ -43,8 +43,6 @@ public class BillOfLading implements BusinessDocument<BillOfLadingItem> {
     private Set<BillOfLadingItem> items;
 
     @Override
-    public BigDecimal getTotalValue() {
-        return totalCost;
-    }
+    public BigDecimal getTotalValue() { return totalCost; }
 
 }

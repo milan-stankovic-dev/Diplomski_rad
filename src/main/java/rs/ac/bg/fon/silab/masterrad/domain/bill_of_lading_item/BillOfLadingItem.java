@@ -26,7 +26,5 @@ public class BillOfLadingItem implements BusinessDocumentItem {
     private Product product;
 
     @Override
-    public int getAmountTransacted() {
-        return amountSold;
-    }
+    public int getAmountTransacted() { return amountSold; }
 }

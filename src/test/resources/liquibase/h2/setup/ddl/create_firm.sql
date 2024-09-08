@@ -1,0 +1,5 @@
+CREATE TABLE tbl_firm (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    firm_name VARCHAR(255) NOT NULL UNIQUE,
+    firm_address VARCHAR(255)
+);

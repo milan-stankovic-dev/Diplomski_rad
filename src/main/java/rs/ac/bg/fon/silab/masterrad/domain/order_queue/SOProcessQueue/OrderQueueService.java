@@ -53,7 +53,7 @@ public class OrderQueueService {
 
         log.info("INVOICES FOUND: " + invoices);
         final List<OrderRequest> requests = dbEntriesToRequests(invoices);
-        log.info("SENDING REQUESTS: " + requests);
+        log.info("SENDING REQUESTS: {}", requests);
 
         for(val request: requests){
             processSingleRequest(request);
@@ -84,11 +84,10 @@ public class OrderQueueService {
     private void processSingleRequest(OrderRequest request)
             throws ParserConfigurationException, IOException, SAXException {
 
-        log.info("SENDING REQUESTS: " + request);
+        log.info("SENDING REQUESTS: {}", request);
         final ResponseEntity<OrderResponse> serverResponseEntity = restTemplate.postForEntity(
                 "http://localhost:6969/invoice/process", request,
-                OrderResponse.class
-        );
+                OrderResponse.class);
         log.info("SERVER RESPONSE: " + serverResponseEntity.getBody());
         updateRelevantInDb(serverResponseEntity);
     }

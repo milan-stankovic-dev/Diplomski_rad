@@ -26,7 +26,5 @@ public class GoodsReceivedNoteItem implements BusinessDocumentItem {
     private Product product;
 
     @Override
-    public int getAmountTransacted() {
-        return amountOrdered;
-    }
+    public int getAmountTransacted() { return amountOrdered; }
 }

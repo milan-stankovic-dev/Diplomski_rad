@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import rs.ac.bg.fon.silab.masterrad.domain.product.Product;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -28,4 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying
     @Query("UPDATE Product p SET p.currentStock = p.currentStock + :stock WHERE p.productName = :name")
     void increaseStockByName(String name, Integer stock);
+
+    Optional<Product> findByCode(UUID code);
 }
